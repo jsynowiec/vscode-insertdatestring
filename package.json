@@ -20,6 +20,9 @@
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
+  "dependencies": {
+    "date-format-lite": "^0.9.0"
+  },
   "devDependencies": {
     "vscode": "^0.11.0"
   },
