@@ -2,5 +2,60 @@
   "name": "vscode-insertdatestring",
   "version": "0.0.0",
   "description": "Insert the current date and time according to configured format.",
-  "license": "MIT"
+  "homepage": "https://github.com/jsynowiec/vscode-insertdatestring#readme",
+  "bugs": {
+    "url": "https://github.com/jsynowiec/vscode-insertdatestring/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Jakub Synowiec",
+    "email": "jakub@jakubsynowiec.info",
+    "url": "https://jakubsynowiec.info"
+  },
+  "main": "./src/extension",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsynowiec/vscode-insertdatestring"
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "vscode": "^0.11.0"
+  },
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "activationEvents": [
+    "onCommand:extension.insertdatestring"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.insertdatestring",
+        "title": "Insert Date String"
+      }
+    ],
+    "configuration": {
+      "title": "Insert Date String Configuration",
+      "properties": {
+        "insertdatestring.format": {
+          "type": "string",
+          "default": "YYYY-MM-DD hh:mm:ss",
+          "description": "Date format to be used."
+        }
+      }
+    },
+    "keybindings": [{
+      "command": "extension.insertdatestring",
+      "key": "shift+ctrl+i",
+      "mac": "shift+cmd+i",
+      "when": "editorTextFocus"
+    }]
+  },
+  "displayName": "Insert formated date string extension",
+  "publisher": "jsynowiec"
 }
