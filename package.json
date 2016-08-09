@@ -1,0 +1,6 @@
+{
+  "name": "vscode-insertdatestring",
+  "version": "0.0.0",
+  "description": "Insert the current date and time according to configured format.",
+  "license": "MIT"
+}
