@@ -47,6 +47,10 @@ where:
 
 ## Changelog
 
+### Version 1.0.1
+
+* Change extension display name
+
 ### Version 1.0.0
 
 * Initial release
