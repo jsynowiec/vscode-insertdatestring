@@ -62,5 +62,10 @@
     ]
   },
   "displayName": "Insert Date String",
-  "publisher": "jsynowiec"
+  "publisher": "jsynowiec",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#005696",
+    "theme": "dark"
+  }
 }
