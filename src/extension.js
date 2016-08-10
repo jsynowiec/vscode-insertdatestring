@@ -11,10 +11,10 @@ exports.activate = function activate(context) {
       const userFormat = vscode.workspace.getConfiguration('insertdatestring').get('format');
       const date = (new Date()).format(userFormat);
 
-      for (let i = 0; i < selections.length; i++) {
-        editBuilder.replace(selections[i], '');
-        editBuilder.insert(selections[i].active, date);
-      }
+      selections.forEach((selection) => {
+        editBuilder.replace(selection, '');
+        editBuilder.insert(selection.active, date);
+      });
     });
   });
 
