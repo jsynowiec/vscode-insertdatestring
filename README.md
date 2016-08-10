@@ -45,16 +45,6 @@ where:
 * `ss` - two digits of second (00 through 59)
 * `TZD` - time zone designator (Z or +hh:mm or -hh:mm)
 
-## Changelog
-
-### Version 1.0.1
-
-* Change extension display name
-
-### Version 1.0.0
-
-* Initial release
-
 ## License
 
 MIT License. See the [LICENSE](/LICENSE) file.
