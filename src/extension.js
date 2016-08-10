@@ -24,6 +24,9 @@ exports.activate = function activate(context) {
     vscode.commands.registerCommand('insertdatestring.insertdatetime', () => {
       replaceEditorSelection(getFormattedDateString());
     }),
+    vscode.commands.registerCommand('insertdatestring.inserttimestamp', () => {
+      replaceEditorSelection((new Date()).getTime().toString());
+    }),
   ];
 
   context.subscriptions.push(...commands);

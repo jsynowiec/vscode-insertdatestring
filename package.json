@@ -34,7 +34,8 @@
     "vscode": "^1.0.0"
   },
   "activationEvents": [
-    "onCommand:insertdatestring.insertdatetime"
+    "onCommand:insertdatestring.insertdatetime",
+    "onCommand:insertdatestring.inserttimestamp"
   ],
   "categories": [
     "Other"
@@ -44,6 +45,10 @@
       {
         "command": "insertdatestring.insertdatetime",
         "title": "Insert DateTime"
+      },
+      {
+        "command": "insertdatestring.inserttimestamp",
+        "title": "Insert Timestamp"
       }
     ],
     "configuration": {
