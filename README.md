@@ -1,28 +1,28 @@
 # Visual Studio Code Extension - Insert Date String
 
-A plugin for Visual Studio Code that inserts the current date and/or time according to the configured ISO 8601 format.
+A plugin for Visual Studio Code that inserts the current date and/or time according to configured format.
 
 ## Installation
 
-Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by pressing `F1`, type `ext install` and then look for Insert Date String extension.
+Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by pressing `F1`, type `ext install` and then look for **Insert Date String** extension.
 
 ## Usage
 
 Following commands are available:
 
-* `Insert DateTime` (`⇧⌘I` on OS X, `Ctrl+Shift+I` on Windows and Linux) - Insert current date and/or time at the cursor position, 
-* `Insert Timestamp` - Insert current timestamp in milliseconds ath the cursor position.
+* `Insert DateTime` (`⇧⌘I` on OS X, `Ctrl+Shift+I` on Windows and Linux) - Inserts current date and/or time according to configured format at the cursor position, 
+* `Insert Timestamp` - Inserts current timestamp in milliseconds at the cursor position.
 
 ## Available settings
 
 * Date and time format string (*this affects `Insert DateTime` output*):
 
-           // Date format to be used.
-          "insertdatestring.format": "YYYY-MM-DD hh:mm:ss",
+        // Date format to be used.
+        "insertdatestring.format": "YYYY-MM-DD hh:mm:ss",
 
 ## Date and Time Formats
 
-For a brief introduction about the accepted formatting syntax, see [ISO 8601 Date and Time formats](https://www.w3.org/TR/NOTE-datetime).
+For a brief introduction about the accepted formatting syntax, see [ISO 8601 date and time formats](https://www.w3.org/TR/NOTE-datetime).
 
 ### Examples
 
