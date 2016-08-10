@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.1.0
+
+* New command to insert current timestamp - `Insert Timestamp`,
+* Change extension namespace from default,
+
 ## Version 1.0.2
 
 * Add extension icon
