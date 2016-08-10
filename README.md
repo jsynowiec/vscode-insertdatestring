@@ -8,17 +8,14 @@ Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by 
 
 ## Usage
 
-To insert current date and/or time at the cursor position you can:
+Following commands are available:
 
-* Press `⇧⌘I` (OS X) or `Ctrl+Shift+I` (Windows and Linux),
-
-or
-
-* Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by pressing `F1` and type `Insert DateTime` then press Enter.
+* `Insert DateTime` (`⇧⌘I` on OS X, `Ctrl+Shift+I` on Windows and Linux) - Insert current date and/or time at the cursor position, 
+* `Insert Timestamp` - Insert current timestamp in milliseconds ath the cursor position.
 
 ## Available settings
 
-* Date and time format string:
+* Date and time format string (*this affects `Insert DateTime` output*):
 
            // Date format to be used.
           "insertdatestring.format": "YYYY-MM-DD hh:mm:ss",
