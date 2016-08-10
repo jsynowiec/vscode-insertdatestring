@@ -8,13 +8,13 @@ Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by 
 
 ## Usage
 
-To insert current Date and/or time at the cursor position you can:
+To insert current date and/or time at the cursor position you can:
 
 * Press `⇧⌘I` (OS X) or `Ctrl+Shift+I` (Windows and Linux),
 
 or
 
-* Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by pressing `F1` and type `Insert Date String` then press Enter.
+* Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by pressing `F1` and type `Insert DateTime` then press Enter.
 
 ## Available settings
 

@@ -34,7 +34,7 @@
     "vscode": "^1.0.0"
   },
   "activationEvents": [
-    "onCommand:extension.insertdatestring"
+    "onCommand:insertdatestring.insertdatetime"
   ],
   "categories": [
     "Other"
@@ -42,8 +42,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.insertdatestring",
-        "title": "Insert Date String"
+        "command": "insertdatestring.insertdatetime",
+        "title": "Insert DateTime"
       }
     ],
     "configuration": {
@@ -58,7 +58,7 @@
     },
     "keybindings": [
       {
-        "command": "extension.insertdatestring",
+        "command": "insertdatestring.insertdatetime",
         "key": "shift+ctrl+i",
         "mac": "shift+cmd+i",
         "when": "editorTextFocus"

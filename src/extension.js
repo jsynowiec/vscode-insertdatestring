@@ -21,7 +21,7 @@ function replaceEditorSelection(text) {
 
 exports.activate = function activate(context) {
   const commands = [
-    vscode.commands.registerCommand('extension.insertdatestring', () => {
+    vscode.commands.registerCommand('insertdatestring.insertdatetime', () => {
       replaceEditorSelection(getFormattedDateString());
     }),
   ];
