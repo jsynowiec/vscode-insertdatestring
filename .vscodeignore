@@ -2,4 +2,5 @@
 typings/**
 test/**
 .gitignore
+.eslintrc
 jsconfig.json
