@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.1.1
+
+* Fix typo and spelling in readme
+
 ## Version 1.1.0
 
 * New command to insert current timestamp - `Insert Timestamp`,
