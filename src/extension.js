@@ -12,8 +12,8 @@ exports.activate = function activate(context) {
       const date = (new Date()).format(userFormat);
 
       for (let i = 0; i < selections.length; i++) {
-          editBuilder.replace(selections[i], '');
-          editBuilder.insert(selections[i].active, date);
+        editBuilder.replace(selections[i], '');
+        editBuilder.insert(selections[i].active, date);
       }
     });
   });
@@ -22,4 +22,3 @@ exports.activate = function activate(context) {
 };
 
 exports.deactivate = function deactivate() {};
-
