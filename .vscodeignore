@@ -3,4 +3,3 @@ typings/**
 test/**
 .gitignore
 jsconfig.json
-vsc-extension-quickstart.md
