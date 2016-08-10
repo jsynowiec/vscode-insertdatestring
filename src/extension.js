@@ -2,23 +2,31 @@ require('date-format-lite');
 
 const vscode = require('vscode');
 
-exports.activate = function activate(context) {
-  const disposable = vscode.commands.registerCommand('extension.insertdatestring', () => {
-    const editor = vscode.window.activeTextEditor;
-    const selections = editor.selections;
+function getFormattedDateString() {
+  const userFormat = vscode.workspace.getConfiguration('insertdatestring').get('format');
+  return (new Date()).format(userFormat);
+}
 
-    editor.edit((editBuilder) => {
-      const userFormat = vscode.workspace.getConfiguration('insertdatestring').get('format');
-      const date = (new Date()).format(userFormat);
+function replaceEditorSelection(text) {
+  const editor = vscode.window.activeTextEditor;
+  const selections = editor.selections;
 
-      selections.forEach((selection) => {
-        editBuilder.replace(selection, '');
-        editBuilder.insert(selection.active, date);
-      });
+  editor.edit((editBuilder) => {
+    selections.forEach((selection) => {
+      editBuilder.replace(selection, '');
+      editBuilder.insert(selection.active, text);
     });
   });
+}
 
-  context.subscriptions.push(disposable);
+exports.activate = function activate(context) {
+  const commands = [
+    vscode.commands.registerCommand('extension.insertdatestring', () => {
+      replaceEditorSelection(getFormattedDateString());
+    }),
+  ];
+
+  context.subscriptions.push(...commands);
 };
 
 exports.deactivate = function deactivate() {};
