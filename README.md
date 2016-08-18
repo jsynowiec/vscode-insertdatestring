@@ -1,6 +1,6 @@
 # Visual Studio Code Extension - Insert Date String
 
-A plugin for Visual Studio Code that inserts the current date and/or time according to configured format.
+A plugin for Visual Studio Code that inserts the current date and/or time according to configured format. Available in [VisualStudio Marketplace](https://marketplace.visualstudio.com/items?itemName=jsynowiec.vscode-insertdatestring).
 
 ## Installation
 
