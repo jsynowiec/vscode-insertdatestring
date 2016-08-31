@@ -19,7 +19,7 @@
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "lint": "eslint src/**.js"
+    "lint": "eslint 'src/**.js'"
   },
   "dependencies": {
     "date-format-lite": "^0.9.1"
