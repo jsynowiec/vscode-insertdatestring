@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.1.2
+
+* Update dependencies
+
 ## Version 1.1.1
 
 * Fix typo and spelling in readme
