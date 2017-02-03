@@ -2,8 +2,13 @@ require('date-format-lite');
 
 const vscode = require('vscode');
 
-function getFormattedDateString() {
-  const userFormat = vscode.workspace.getConfiguration('insertdatestring').get('format');
+const INPUT_PROMPT = 'Date and Time format';
+
+function getConfiguredFormat() {
+  return vscode.workspace.getConfiguration('insertdatestring').get('format');
+}
+
+function getFormattedDateString(userFormat = getConfiguredFormat()) {
   return (new Date()).format(userFormat);
 }
 
@@ -26,6 +31,14 @@ exports.activate = function activate(context) {
     }),
     vscode.commands.registerCommand('insertdatestring.inserttimestamp', () => {
       replaceEditorSelection((new Date()).getTime().toString());
+    }),
+    vscode.commands.registerCommand('insertdatestring.insertownformatdatetime', () => {
+      vscode.window.showInputBox({
+        value: getConfiguredFormat(),
+        prompt: INPUT_PROMPT,
+      }).then((format) => {
+        replaceEditorSelection(getFormattedDateString(format));
+      });
     }),
   ];
 

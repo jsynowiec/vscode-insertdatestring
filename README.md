@@ -27,6 +27,7 @@ Following commands are available:
 
 * `Insert DateTime` (`⇧⌘I` on OS X, `Ctrl+Shift+I` on Windows and Linux) - Inserts current date and/or time according to configured format at the cursor position, 
 * `Insert Timestamp` - Inserts current timestamp in milliseconds at the cursor position.
+* `Insert formatted DateTime` (`⇧⌘⌥I` on OS X, `Ctrl+Alt+Shift+I` on Windows and Linux) - Prompt user for format and insert formatted date and/or time at the cursor position.
 
 ## Available settings
 

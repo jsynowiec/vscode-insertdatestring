@@ -35,7 +35,8 @@
   },
   "activationEvents": [
     "onCommand:insertdatestring.insertdatetime",
-    "onCommand:insertdatestring.inserttimestamp"
+    "onCommand:insertdatestring.inserttimestamp",
+    "onCommand:insertdatestring.insertownformatdatetime"
   ],
   "categories": [
     "Other"
@@ -49,6 +50,10 @@
       {
         "command": "insertdatestring.inserttimestamp",
         "title": "Insert Timestamp"
+      },
+      {
+        "command": "insertdatestring.insertownformatdatetime",
+        "title": "Insert formatted DateTime"
       }
     ],
     "configuration": {
@@ -66,6 +71,12 @@
         "command": "insertdatestring.insertdatetime",
         "key": "shift+ctrl+i",
         "mac": "shift+cmd+i",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "insertdatestring.insertownformatdatetime",
+        "key": "shift+ctrl+alt+i",
+        "mac": "shift+cmd+alt+i",
         "when": "editorTextFocus"
       }
     ]
