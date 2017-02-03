@@ -35,27 +35,48 @@ Following commands are available:
         // Date format to be used.
         "insertdatestring.format": "YYYY-MM-DD hh:mm:ss",
 
-## Date and Time Formats
+## Syntax
 
-For a brief introduction about the accepted formatting syntax, see [ISO 8601 date and time formats](https://www.w3.org/TR/NOTE-datetime).
+- **Y**     - A two digit representation of a year without leading zeros. Examples: 99 or 3
+- **YY**    - A two digit representation of a year. Examples: 99 or 03
+- **YYYY**  - A full numeric representation of a year, 4 digits. Examples: 1999 or 2003
+- **M**     - Numeric representation of a month, without leading zeros. 1 through 12
+- **MM**    - Numeric representation of a month, with leading zeros. 01 through 12
+- **MMM**   - A short textual representation of a month, three letters. Jan through Dec
+- **MMMM**  - A full textual representation of a month, such as January or March. January through December
+- **D**     - Day of the month without leading zeros. 1 to 31
+- **DD**    - Day of the month, 2 digits with leading zeros. 01 to 31
+- **DDD**   - A textual representation of a day, three letters. Mon through Sun
+- **DDDD**  - A full textual representation of the day of the week. Sunday through Saturday
+- **H**     - 12-hour format of an hour without leading zeros. 1 through 12
+- **HH**    - 12-hour format of an hour with leading zeros. 01 through 12
+- **h**     - 24-hour format of an hour without leading zeros. 0 through 23
+- **hh**    - 24-hour format of an hour with leading zeros. 00 through 23
+- **m**     - Minutes without leading zeros. 0 through 59
+- **mm**    - Minutes with leading zeros. 00 to 59
+- **s**     - Seconds without leading zeros. 0 through 59
+- **ss**    - Seconds with leading zeros. 00 to 59
+- **S**     - Milliseconds without leading zeros. 0 through 999
+- **SS**    - Milliseconds with leading zeros. 000 to 999
+- **u**     - Milliseconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
+- **U**     - Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
+- **A**     - Ante meridiem and Post meridiem. AM or PM
+- **Z**     - Difference to Greenwich time (GMT) with colon between hours and minutes. Example: GMT +02:00
+
+### ISO-8601
+- **iso**   - Simplified extended ISO format (ISO 8601) without miliseconds. The timezone is always zero UTC offset, as denoted by the suffix "Z".
+- **w**     - Day of the week. 1 (for Monday) through 7 (for Sunday)
+- **W**     - Week number of year, first week is the week with 4 January in it
+- **o**     - ISO 8601 year number. This has the same value as YYYY,
+except that if the ISO week number (W) belongs to the previous or next year,
+that year is used instead
 
 ### Examples
 
-* Year: `YYYY` (eg 1997)
-* Year and month: `YYYY-MM` (eg 1997-07)
-* Complete date: `YYYY-MM-DD` (eg 1997-07-16)
-* Complete date plus hours and minutes: `YYYY-MM-DDThh:mmTZD` (eg 1997-07-16T19:20+01:00)
-* Complete date plus hours, minutes and seconds: `YYYY-MM-DDThh:mm:ssTZD` (eg 1997-07-16T19:20:30+01:00)
-
-where:
-
-* `YYYY` - four-digit year
-* `MM` - two-digit month (01=January, etc.)
-* `DD` - two-digit day of month (01 through 31)
-* `hh` - two digits of hour (00 through 23) (am/pm NOT allowed)
-* `mm` - two digits of minute (00 through 59)
-* `ss` - two digits of second (00 through 59)
-* `TZD` - time zone designator (Z or +hh:mm or -hh:mm)
+* UTC date and time: `iso` (2013-07-16T20:13:31Z)
+* Year and month: `YYYY-MM` (2013-07)
+* Complete date: `YYYY-MM-DD` (2013-07-16)
+* Complete date plus hours, minutes, seconds and difference to GMT: `YYYY-MM-DDThh:mm:ssZ` (eg 2013-07-16T20:13:31+01:00)
 
 ## License
 
