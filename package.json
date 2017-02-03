@@ -53,7 +53,7 @@
       },
       {
         "command": "insertdatestring.insertownformatdatetime",
-        "title": "Insert formatted DateTime"
+        "title": "Insert Formatted DateTime"
       }
     ],
     "configuration": {
