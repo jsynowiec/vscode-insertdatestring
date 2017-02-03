@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.2.0
+
+* New command to insert user formatted date/time - Insert Formatted DateTime,
+
 ## Version 1.1.2
 
 * Update dependencies
