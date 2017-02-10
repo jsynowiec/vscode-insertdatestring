@@ -33,8 +33,10 @@ Following commands are available:
 
 * Date and time format string (*this affects `Insert DateTime` output*):
 
-        // Date format to be used.
-        "insertdatestring.format": "YYYY-MM-DD hh:mm:ss",
+```
+// Date format to be used.
+"insertdatestring.format": "YYYY-MM-DD hh:mm:ss",
+```
 
 ## Syntax
 
@@ -62,22 +64,25 @@ Following commands are available:
 - **u**     - Milliseconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
 - **U**     - Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
 - **A**     - Ante meridiem and Post meridiem. AM or PM
-- **Z**     - Difference to Greenwich time (GMT) with colon between hours and minutes. Example: GMT +02:00
+
+### Time zone designators
+- **Z**     - Time offsets from UTC in the form ±hh[:mm] Examples: +02,    +02:30
+- **ZZ**    - Time offsets from UTC in the form ±hh[mm] Examples:  +02,    +0230
+- **ZZZ**   - Time offsets from UTC in the form ±hh:mm Examples:   +02:00, +02:30
+- **ZZZZ**  - Time offsets from UTC in the form ±hhmm Examples:    +0200,  +0230
 
 ### ISO-8601
 - **iso**   - Simplified extended ISO format (ISO 8601) without miliseconds. The timezone is always zero UTC offset, as denoted by the suffix "Z".
 - **w**     - Day of the week. 1 (for Monday) through 7 (for Sunday)
 - **W**     - Week number of year, first week is the week with 4 January in it
-- **o**     - ISO 8601 year number. This has the same value as YYYY,
-except that if the ISO week number (W) belongs to the previous or next year,
-that year is used instead
+- **o**     - ISO 8601 year number. This has the same value as YYYY, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead
 
 ### Examples
 
 * UTC date and time: `iso` (2013-07-16T20:13:31Z)
 * Year and month: `YYYY-MM` (2013-07)
 * Complete date: `YYYY-MM-DD` (2013-07-16)
-* Complete date plus hours, minutes, seconds and difference to GMT: `YYYY-MM-DDThh:mm:ssZ` (eg 2013-07-16T20:13:31+01:00)
+* Complete date plus hours, minutes, seconds and difference to GMT: `YYYY-MM-DDThh:mm:ssZZZ` (2013-07-16T20:13:31+01:00)
 
 ## License
 
