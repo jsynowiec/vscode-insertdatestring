@@ -17,6 +17,8 @@
 
 A plugin for Visual Studio Code that inserts the current date and/or time according to configured format. Available in [VisualStudio Marketplace][marketplace].
 
+**Notice** Version 2.0 changed settings namespace from `insertdatestring` to `insertDateString`. Please update your userspace and workspace settings.
+
 ## Installation
 
 Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by pressing `F1`, type `ext install` and then look for **Insert Date String** extension.
@@ -25,9 +27,9 @@ Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by 
 
 Following commands are available:
 
-* `Insert DateTime` (`⇧⌘I` on OS X, `Ctrl+Shift+I` on Windows and Linux) - Inserts current date and/or time according to configured format at the cursor position, 
+* `Insert DateTime` (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>I</kbd> on OS X, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> on Windows and Linux) - Inserts current date and/or time according to configured format at the cursor position, 
 * `Insert Timestamp` - Inserts current timestamp in milliseconds at the cursor position.
-* `Insert Formatted DateTime` (`⇧⌘⌥I` on OS X, `Ctrl+Alt+Shift+I` on Windows and Linux) - Prompt user for format and insert formatted date and/or time at the cursor position.
+* `Insert Formatted DateTime` (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>I</kbd> on OS X, <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> on Windows and Linux) - Prompt user for format and insert formatted date and/or time at the cursor position.
 
 ## Available settings
 
@@ -35,7 +37,7 @@ Following commands are available:
 
 ```
 // Date format to be used.
-"insertdatestring.format": "YYYY-MM-DD hh:mm:ss",
+"insertDateString.format": "YYYY-MM-DD hh:mm:ss",
 ```
 
 ## Syntax
