@@ -1,6 +1,7 @@
 .vscode/**
-typings/**
-test/**
+**/*.ts
+**/*.map
 .gitignore
-.eslintrc
-jsconfig.json
+.editorconfig
+tslint.json
+tsconfig.json

@@ -1,7 +1,9 @@
 {
   "name": "vscode-insertdatestring",
-  "version": "1.2.1",
+  "displayName": "Insert Date String",
   "description": "Insert the current date and time according to configured format.",
+  "version": "1.2.1",
+  "publisher": "jsynowiec",
   "homepage": "https://github.com/jsynowiec/vscode-insertdatestring#readme",
   "bugs": {
     "url": "https://github.com/jsynowiec/vscode-insertdatestring/issues"
@@ -12,26 +14,30 @@
     "email": "github@jakubsynowiec.info",
     "url": "https://jakubsynowiec.info"
   },
-  "main": "./src/extension",
+  "main": "./out/src/extension",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/jsynowiec/vscode-insertdatestring"
   },
   "scripts": {
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "lint": "eslint 'src/**.js'"
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install && tsc -p ./",
+    "lint": "tslint \"src/**.js\""
   },
   "dependencies": {
-    "date-format-lite": "0.9.2"
+    "date-format-lite": "^0.9.2"
   },
   "devDependencies": {
-    "eslint": "~3.14.1",
-    "eslint-config-airbnb-base": "~11.0.1",
-    "eslint-plugin-import": "~2.2.0",
-    "vscode": "~1.0.3"
+    "@types/node": "^6.0.63",
+    "tslint": "^5.0.0",
+    "typescript": "^2.2.1",
+    "vscode": "^1.1.0"
   },
   "engines": {
-    "vscode": "^1.0.0"
+    "vscode": "^1.4.0"
   },
   "activationEvents": [
     "onCommand:insertdatestring.insertdatetime",
@@ -81,8 +87,6 @@
       }
     ]
   },
-  "displayName": "Insert Date String",
-  "publisher": "jsynowiec",
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#005696",
