@@ -6,7 +6,7 @@ const INPUT_PROMPT = 'Date and Time format';
 const DEFAULT_FORMAT = 'YYYY-MM-DD hh:mm:ss';
 
 function getConfiguredFormat(): string {
-  const insertDateStringConfiguration = workspace.getConfiguration('insertdatestring');
+  const insertDateStringConfiguration = workspace.getConfiguration('insertDateString');
   return insertDateStringConfiguration.get('format', DEFAULT_FORMAT);
 }
 
@@ -29,17 +29,17 @@ function replaceEditorSelection(text: string) {
 
 export function activate(context: ExtensionContext): void {
   context.subscriptions.push(commands.registerCommand(
-    'insertdatestring.insertdatetime',
+    'insertDateString.insertDateTime',
     () => replaceEditorSelection(getFormattedDateString())
   ));
 
   context.subscriptions.push(commands.registerCommand(
-    'insertdatestring.inserttimestamp',
+    'insertDateString.insertTimestamp',
     () => replaceEditorSelection((new Date()).getTime().toString())
   ));
 
   context.subscriptions.push(commands.registerCommand(
-    'insertdatestring.insertownformatdatetime',
+    'insertDateString.insertOwnFormatDateTime',
     () => {
       window.showInputBox({
         value: getConfiguredFormat(),

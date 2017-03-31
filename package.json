@@ -40,9 +40,9 @@
     "vscode": "^1.4.0"
   },
   "activationEvents": [
-    "onCommand:insertdatestring.insertdatetime",
-    "onCommand:insertdatestring.inserttimestamp",
-    "onCommand:insertdatestring.insertownformatdatetime"
+    "onCommand:insertDateString.insertDateTime",
+    "onCommand:insertDateString.insertTimestamp",
+    "onCommand:insertDateString.insertOwnFormatDateTime"
   ],
   "categories": [
     "Other"
@@ -50,22 +50,22 @@
   "contributes": {
     "commands": [
       {
-        "command": "insertdatestring.insertdatetime",
+        "command": "insertDateString.insertDateTime",
         "title": "Insert DateTime"
       },
       {
-        "command": "insertdatestring.inserttimestamp",
+        "command": "insertDateString.insertTimestamp",
         "title": "Insert Timestamp"
       },
       {
-        "command": "insertdatestring.insertownformatdatetime",
+        "command": "insertDateString.insertOwnFormatDateTime",
         "title": "Insert Formatted DateTime"
       }
     ],
     "configuration": {
       "title": "Insert Date String Configuration",
       "properties": {
-        "insertdatestring.format": {
+        "insertDateString.format": {
           "type": "string",
           "default": "YYYY-MM-DD hh:mm:ss",
           "description": "Date format to be used."
@@ -74,13 +74,13 @@
     },
     "keybindings": [
       {
-        "command": "insertdatestring.insertdatetime",
+        "command": "insertDateString.insertDateTime",
         "key": "shift+ctrl+i",
         "mac": "shift+cmd+i",
         "when": "editorTextFocus"
       },
       {
-        "command": "insertdatestring.insertownformatdatetime",
+        "command": "insertDateString.insertOwnFormatDateTime",
         "key": "shift+ctrl+alt+i",
         "mac": "shift+cmd+alt+i",
         "when": "editorTextFocus"
