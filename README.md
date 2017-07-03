@@ -94,9 +94,9 @@ MIT License. See the [LICENSE][license] file.
 [dependencies]: https://david-dm.org/jsynowiec/vscode-insertdatestring
 [devdependencies-badge]: https://david-dm.org/jsynowiec/vscode-insertdatestring/dev-status.svg
 [devdependencies]: https://david-dm.org/jsynowiec/vscode-insertdatestring?type=dev
-[version-badge]: http://vsmarketplacebadge.apphb.com/version/jsynowiec.vscode-insertdatestring.svg
+[version-badge]: https://vsmarketplacebadge.apphb.com/version/jsynowiec.vscode-insertdatestring.svg
 [marketplace]: https://marketplace.visualstudio.com/items?itemName=jsynowiec.vscode-insertdatestring
-[installs-badge]: http://vsmarketplacebadge.apphb.com/installs/jsynowiec.vscode-insertdatestring.svg
+[installs-badge]: https://vsmarketplacebadge.apphb.com/installs/jsynowiec.vscode-insertdatestring.svg
 [ratings-badge]: https://vsmarketplacebadge.apphb.com/rating/jsynowiec.vscode-insertdatestring.svg
 [marketplace-ratings]: https://marketplace.visualstudio.com/items?itemName=jsynowiec.vscode-insertdatestring#review-details
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
