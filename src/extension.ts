@@ -5,9 +5,9 @@ import 'date-format-lite';
 const INPUT_PROMPT = 'Date and Time format';
 const DEFAULT_FORMAT = 'YYYY-MM-DD hh:mm:ss';
 
-function getConfiguredFormat(): string {
+function getConfiguredFormat(format: string = 'format'): string {
   const insertDateStringConfiguration = workspace.getConfiguration('insertDateString');
-  return insertDateStringConfiguration.get('format', DEFAULT_FORMAT);
+  return insertDateStringConfiguration.get(format, DEFAULT_FORMAT);
 }
 
 function getFormattedDateString(userFormat = getConfiguredFormat()): string {
@@ -31,6 +31,16 @@ export function activate(context: ExtensionContext): void {
   context.subscriptions.push(commands.registerCommand(
     'insertDateString.insertDateTime',
     () => replaceEditorSelection(getFormattedDateString())
+  ));
+
+  context.subscriptions.push(commands.registerCommand(
+    'insertDateString.insertDate',
+    () => replaceEditorSelection(getFormattedDateString(getConfiguredFormat('formatDate')))
+  ));
+
+  context.subscriptions.push(commands.registerCommand(
+    'insertDateString.insertTime',
+    () => replaceEditorSelection(getFormattedDateString(getConfiguredFormat('formatTime')))
   ));
 
   context.subscriptions.push(commands.registerCommand(
