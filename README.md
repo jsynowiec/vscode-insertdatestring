@@ -28,16 +28,22 @@ Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by 
 Following commands are available:
 
 * `Insert DateTime` (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>I</kbd> on OS X, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> on Windows and Linux) - Inserts current date and/or time according to configured format at the cursor position, 
+* `Insert Date` - Inserts current date according to configured format (formatDate) at the cursor position, 
+* `Insert Time` - Inserts current time according to configured format (formatTime) at the cursor position, 
 * `Insert Timestamp` - Inserts current timestamp in milliseconds at the cursor position.
 * `Insert Formatted DateTime` (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>I</kbd> on OS X, <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> on Windows and Linux) - Prompt user for format and insert formatted date and/or time at the cursor position.
 
 ## Available settings
 
 * Date and time format string (*this affects `Insert DateTime` output*):
+* Date format string (*this affects `Insert Date` output*):
+* Time format string (*this affects `Insert Time` output*):
 
 ```
 // Date format to be used.
 "insertDateString.format": "YYYY-MM-DD hh:mm:ss",
+"insertDateString.formatDate": "YYYY-MM-DD",
+"insertDateString.formatTime": "hh:mm:ss",
 ```
 
 ## Syntax
