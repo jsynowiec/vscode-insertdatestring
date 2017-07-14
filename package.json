@@ -41,6 +41,8 @@
   },
   "activationEvents": [
     "onCommand:insertDateString.insertDateTime",
+    "onCommand:insertDateString.insertDate",
+    "onCommand:insertDateString.insertTime",
     "onCommand:insertDateString.insertTimestamp",
     "onCommand:insertDateString.insertOwnFormatDateTime"
   ],
@@ -52,6 +54,14 @@
       {
         "command": "insertDateString.insertDateTime",
         "title": "Insert DateTime"
+      },
+      {
+        "command": "insertDateString.insertDate",
+        "title": "Insert Date"
+      },
+      {
+        "command": "insertDateString.insertTime",
+        "title": "Insert Time"
       },
       {
         "command": "insertDateString.insertTimestamp",
@@ -68,7 +78,17 @@
         "insertDateString.format": {
           "type": "string",
           "default": "YYYY-MM-DD hh:mm:ss",
+          "description": "Date time format to be used."
+        },
+        "insertDateString.formatDate": {
+          "type": "string",
+          "default": "YYYY-MM-DD",
           "description": "Date format to be used."
+        },
+        "insertDateString.formatTime": {
+          "type": "string",
+          "default": "hh:mm:ss",
+          "description": "Time format to be used."
         }
       }
     },
