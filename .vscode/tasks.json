@@ -1,0 +1,27 @@
+{
+	"version": "0.1.0",
+	"command": "npm",
+  "args": [
+    "run"
+  ],
+	"isShellCommand": true,
+	"showOutput": "silent",
+  "tasks": [
+    {
+      "taskName": "compile",
+      "isBuildCommand": true,
+	    "isBackground": true,
+  	  "problemMatcher": "$tsc-watch"
+    },
+    {
+      "taskName": "watch",
+	    "isBackground": true,
+  	  "problemMatcher": "$tsc-watch"
+    },
+    {
+      "taskName": "lint",
+	    "isBackground": true,
+  	  "problemMatcher": "$tsc-watch"
+    }
+  ]
+}
