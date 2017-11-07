@@ -2,7 +2,7 @@
   "name": "vscode-insertdatestring",
   "displayName": "Insert Date String",
   "description": "Insert the current date and time according to configured format.",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "publisher": "jsynowiec",
   "homepage": "https://github.com/jsynowiec/vscode-insertdatestring#readme",
   "bugs": {
@@ -31,10 +31,10 @@
     "date-format-lite": "^0.9.2"
   },
   "devDependencies": {
-    "@types/node": "^6.0.63",
-    "tslint": "^5.0.0",
-    "typescript": "^2.2.1",
-    "vscode": "^1.1.0"
+    "@types/node": "^6.0.90",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1",
+    "vscode": "^1.1.6"
   },
   "engines": {
     "vscode": "^1.4.0"
