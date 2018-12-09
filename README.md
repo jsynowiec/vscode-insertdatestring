@@ -3,10 +3,10 @@
 [![Version][version-badge]][marketplace]
 [![Installs][installs-badge]][marketplace]
 [![Ratings][ratings-badge]][marketplace-ratings]
-[![Dependencies][dependencies-badge]][dependencies]
 
+[![Dependencies][dependencies-badge]][dependencies]
 [![License][license-badge]][LICENSE]
-[![PRs Welcome][prs-badge]][prs]
+
 [![Donate][donate-badge]][donate]
 
 A plugin for Visual Studio Code that inserts the current date and/or time according to configured format. Available in [VisualStudio Marketplace][marketplace].
@@ -102,7 +102,6 @@ Licensed under the [MIT License][license].
 [marketplace-ratings]: https://marketplace.visualstudio.com/items?itemName=jsynowiec.vscode-insertdatestring#review-details
 [license-badge]: https://img.shields.io/github/license/jsynowiec/vscode-insertdatestring.svg
 [license]: https://github.com/jsynowiec/vscode-insertdatestring/blob/master/LICENSE
-[prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
-[prs]: http://makeapullrequest.com
-[donate-badge]: https://img.shields.io/badge/$-support-green.svg
-[donate]: http://bit.ly/donate-js
+
+[donate-badge]: https://img.shields.io/badge/☕-buy%20me%20a%20coffee-46b798.svg
+[donate]: https://ko-fi.com/X8X8N42K
