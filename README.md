@@ -88,9 +88,7 @@ Following commands are available:
 
 ## License
 
-Copyright 2017 Jakub Synowiec
-
-Licensed under the [MIT License][license].
+Released under the [MIT License][license].
 
 [dependencies-badge]: https://david-dm.org/jsynowiec/vscode-insertdatestring/status.svg
 [dependencies]: https://david-dm.org/jsynowiec/vscode-insertdatestring
