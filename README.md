@@ -102,4 +102,4 @@ Released under the [MIT License][license].
 [license]: https://github.com/jsynowiec/vscode-insertdatestring/blob/master/LICENSE
 
 [donate-badge]: https://img.shields.io/badge/☕-buy%20me%20a%20coffee-46b798.svg
-[donate]: https://ko-fi.com/X8X8N42K
+[donate]: https://paypal.me/jaqb/5eur
