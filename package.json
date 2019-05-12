@@ -47,7 +47,15 @@
     "onCommand:insertDateString.insertOwnFormatDateTime"
   ],
   "categories": [
-    "Other"
+    "Other",
+    "Snippets"
+  ],
+  "keywords": [
+    "iso 8601",
+    "datetime",
+    "current date",
+    "timestamp",
+    "template"
   ],
   "contributes": {
     "commands": [
