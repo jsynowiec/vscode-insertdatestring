@@ -24,20 +24,27 @@
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install && tsc -p ./",
-    "lint": "tslint \"src/**.js\""
+    "lint": "eslint -c .eslintrc.js --ext .ts .",
+    "prettier": "prettier --write '**/*.{ts,json,md,yml,js}'"
   },
   "dependencies": {
     "date-format-lite": "^17.7.0"
   },
   "devDependencies": {
-    "@types/node": "^10.14.6",
-    "tslint": "^5.16.0",
-    "typescript": "^3.4.5",
-    "vscode": "^1.1.34"
+    "@types/node": "^12",
+    "@types/vscode": "1.41",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/eslint-plugin-tslint": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.6"
   },
   "engines": {
-    "vscode": "^1.4.0"
+    "vscode": "^1.41.0"
   },
   "activationEvents": [
     "onCommand:insertDateString.insertDateTime",

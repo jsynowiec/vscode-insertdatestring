@@ -1,7 +1,9 @@
-.vscode/**
+.vscode
 **/*.ts
 **/*.map
 .gitignore
 .editorconfig
-tslint.json
+.prettierrc
+.prettierignore
+.eslintrc.json
 tsconfig.json
