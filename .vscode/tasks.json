@@ -1,25 +1,32 @@
 {
-  "version": "0.2.0",
+  "version": "2.0.0",
   "command": "npm",
   "args": [
     "run"
   ],
-  "isShellCommand": true,
-  "showOutput": "silent",
+  "type": "shell",
+  "presentation": {
+    "echo": true,
+    "reveal": "silent",
+    "focus": false,
+    "panel": "shared",
+    "showReuseMessage": true,
+    "clear": false
+  },
   "tasks": [
     {
-      "taskName": "compile",
-      "isBuildCommand": true,
+      "label": "compile",
+      "group": "build",
       "isBackground": true,
       "problemMatcher": "$tsc-watch"
     },
     {
-      "taskName": "watch",
+      "label": "watch",
       "isBackground": true,
       "problemMatcher": "$tsc-watch"
     },
     {
-      "taskName": "lint",
+      "label": "lint",
       "isBackground": true,
       "problemMatcher": "$tsc-watch"
     }
