@@ -24,13 +24,66 @@ Following commands are available:
 - `Insert Timestamp` - Inserts current timestamp in milliseconds at the cursor position.
 - `Insert Formatted DateTime` (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>I</kbd> on OS X, <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> on Windows and Linux) - Prompt user for format and insert formatted date and/or time at the cursor position.
 
+Each command is also available as a variable expansion, which is particularly useful for [task input variables](https://code.visualstudio.com/docs/editor/variables-reference#_input-variables).
+
+- `insertDateString.getDateTime` - Returns current date and/or time according to configured format (`format`).
+- `insertDateString.getDate` - Returns current date according to configured format (`formatDate`).
+- `insertDateString.getTime` - Returns current time according to configured format (`formatTime`).
+- `insertDateString.getTimestamp` - Returns current timestamp in milliseconds.
+- `insertDateString.getOwnFormatDateTime` - Returns formatted date and/or time according to provided format.
+
+``` json
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "print default datetime",
+			"type": "shell",
+			"command": "echo",
+			"args": ["${input:dateTime}"]
+		},
+		{
+			"label": "print custom datetime",
+			"type": "shell",
+			"command": "echo",
+			"args": ["${input:formatDateTime}"]
+		},
+		{
+			"label": "print prompted datetime",
+			"type": "shell",
+			"command": "echo",
+			"args": ["${input:promptedDateTime}"]
+		}
+	],
+	"inputs": [
+		{
+			"id": "dateTime",
+			"type": "command",
+			"command": "insertDateString.getDateTime"
+		},
+		{
+			"id": "formatDateTime",
+			"type": "command",
+			"command": "insertDateString.getOwnFormatDateTime",
+			"args": "hh:mm:ss YYYY-MM-DD"
+		},
+		{
+			"id": "promptedDateTime",
+			"type": "command",
+			"command": "insertDateString.getOwnFormatDateTime"
+			// notice lack of args here
+		}
+	]
+}
+```
+
 ## Available settings
 
 - Date and time format string (_this affects `Insert DateTime` output_):
 - Date format string (_this affects `Insert Date` output_):
 - Time format string (_this affects `Insert Time` output_):
 
-```
+``` json
 // Date format to be used.
 "insertDateString.format": "YYYY-MM-DD hh:mm:ss",
 "insertDateString.formatDate": "YYYY-MM-DD",
