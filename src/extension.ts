@@ -14,6 +14,9 @@ function getConfiguredFormat(format = "format"): string {
 
 function getFormattedDateString(userFormat = getConfiguredFormat()): string {
   const now = new Date();
+  if (userFormat === "isoSS") {
+    return now.toISOString();
+  }
   return now.format(userFormat);
 }
 
