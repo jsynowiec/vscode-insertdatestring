@@ -1,3 +1,10 @@
-out
-node_modules
+.DS_Store
+npm-debug.log
+Thumbs.db
+**/node_modules/
+**/out/
+**/.vs/
+tsconfig.lsif.json
+*.lsif
+*.db
 *.vsix
