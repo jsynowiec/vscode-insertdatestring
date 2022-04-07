@@ -32,6 +32,7 @@ function replaceEditorSelection(text: string) {
 }
 
 export function activate(context: ExtensionContext): void {
+  // User-facing commands (exposed in contributions)
   context.subscriptions.push(
     commands.registerCommand("insertDateString.insertDateTime", () =>
       replaceEditorSelection(getFormattedDateString())
@@ -61,15 +62,59 @@ export function activate(context: ExtensionContext): void {
   );
 
   context.subscriptions.push(
-    commands.registerCommand("insertDateString.insertOwnFormatDateTime", () => {
-      window
-        .showInputBox({
+    commands.registerCommand("insertDateString.insertOwnFormatDateTime", async () => {
+      const format = await window.showInputBox({
+        value: getConfiguredFormat(),
+        prompt: INPUT_PROMPT,
+      });
+
+      if (format != null) {
+        replaceEditorSelection(getFormattedDateString(format));
+      }
+    })
+  );
+
+  // Can be used in task inputs and other variable substitutions
+  context.subscriptions.push(
+    commands.registerCommand("insertDateString.getDateTime", () => {
+      return getFormattedDateString();
+    })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand("insertDateString.getDate", () => {
+      return getFormattedDateString(getConfiguredFormat("formatDate"));
+    })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand("insertDateString.getTime", () => {
+      return getFormattedDateString(getConfiguredFormat("formatTime"));
+    })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand("insertDateString.getTimestamp", () => {
+      return new Date().getTime().toString();
+    })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand("insertDateString.getOwnFormatDateTime", async format => {
+      if (format != null) {
+        return getFormattedDateString(format);
+      } else {
+        const format = await window.showInputBox({
           value: getConfiguredFormat(),
           prompt: INPUT_PROMPT,
-        })
-        .then((format) => {
-          replaceEditorSelection(getFormattedDateString(format));
         });
+
+        if (format != null) {
+          return getFormattedDateString(format);
+        } else {
+          return undefined;
+        }
+      }
     })
   );
 }

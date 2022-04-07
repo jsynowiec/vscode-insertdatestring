@@ -52,7 +52,12 @@
     "onCommand:insertDateString.insertDate",
     "onCommand:insertDateString.insertTime",
     "onCommand:insertDateString.insertTimestamp",
-    "onCommand:insertDateString.insertOwnFormatDateTime"
+    "onCommand:insertDateString.insertOwnFormatDateTime",
+    "onCommand:insertDateString.getDateTime",
+    "onCommand:insertDateString.getDate",
+    "onCommand:insertDateString.getTime",
+    "onCommand:insertDateString.getTimestamp",
+    "onCommand:insertDateString.getOwnFormatDateTime"
   ],
   "categories": [
     "Other",
