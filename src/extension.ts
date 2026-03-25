@@ -10,9 +10,8 @@ const INPUT_PROMPT = "Date and Time format";
 const DEFAULT_FORMAT = "YYYY-MM-DD HH:mm:ss";
 
 function getConfiguredFormat(format = "format"): string {
-  const insertDateStringConfiguration = workspace.getConfiguration(
-    "insertDateString"
-  );
+  const insertDateStringConfiguration =
+    workspace.getConfiguration("insertDateString");
   return insertDateStringConfiguration.get(format, DEFAULT_FORMAT);
 }
 
@@ -55,30 +54,30 @@ function replaceEditorSelection(text: string) {
 export function activate(context: ExtensionContext): void {
   context.subscriptions.push(
     commands.registerCommand("insertDateString.insertDateTime", () =>
-      replaceEditorSelection(getFormattedDateString())
-    )
+      replaceEditorSelection(getFormattedDateString()),
+    ),
   );
 
   context.subscriptions.push(
     commands.registerCommand("insertDateString.insertDate", () =>
       replaceEditorSelection(
-        getFormattedDateString(getConfiguredFormat("formatDate"))
-      )
-    )
+        getFormattedDateString(getConfiguredFormat("formatDate")),
+      ),
+    ),
   );
 
   context.subscriptions.push(
     commands.registerCommand("insertDateString.insertTime", () =>
       replaceEditorSelection(
-        getFormattedDateString(getConfiguredFormat("formatTime"))
-      )
-    )
+        getFormattedDateString(getConfiguredFormat("formatTime")),
+      ),
+    ),
   );
 
   context.subscriptions.push(
     commands.registerCommand("insertDateString.insertTimestamp", () =>
-      replaceEditorSelection(new Date().getTime().toString())
-    )
+      replaceEditorSelection(new Date().getTime().toString()),
+    ),
   );
 
   context.subscriptions.push(
@@ -91,6 +90,6 @@ export function activate(context: ExtensionContext): void {
         .then((format) => {
           replaceEditorSelection(getFormattedDateString(format));
         });
-    })
+    }),
   );
 }
