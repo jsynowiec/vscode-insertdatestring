@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "target": "ES2022",
-    "outDir": "out",
-    "sourceMap": true,
     "lib": ["ES2022"],
     "strict": true,
     "noImplicitReturns": true,
@@ -11,7 +10,8 @@
     "noUnusedParameters": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "noEmit": true,
     "rootDir": "."
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

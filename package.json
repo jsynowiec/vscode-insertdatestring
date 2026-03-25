@@ -14,18 +14,19 @@
     "email": "github@jakubsynowiec.info",
     "url": "https://jakubsynowiec.info"
   },
-  "main": "./out/src/extension",
+  "main": "./dist/extension.js",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/jsynowiec/vscode-insertdatestring"
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "prettier": "prettier --write '**/*.{ts,json,md,yml,js}'"
+    "prettier": "prettier --write '**/*.{ts,json,md,yml,js,mjs}'"
   },
   "dependencies": {
     "dayjs": "^1.11.20"
@@ -34,8 +35,10 @@
     "@eslint/js": "^9.39.4",
     "@types/node": "^22.0.0",
     "@types/vscode": "^1.96.0",
+    "esbuild": "^0.27.4",
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.4.0",
     "prettier": "^3.8.1",
     "typescript": "^5.8.0",
     "typescript-eslint": "^8.57.2"
