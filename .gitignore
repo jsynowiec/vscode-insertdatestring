@@ -3,8 +3,18 @@ npm-debug.log
 Thumbs.db
 **/node_modules/
 **/out/
+**/dist/
 **/.vs/
 tsconfig.lsif.json
 *.lsif
 *.db
 *.vsix
+
+.env
+
+# Claude Code local files
+.claude/**/*.local.*
+.worktrees/
+
+# Private journal (MCP tool data)
+.private-journal/

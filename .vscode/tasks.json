@@ -1,34 +1,37 @@
 {
   "version": "2.0.0",
-  "command": "npm",
-  "args": [
-    "run"
-  ],
-  "type": "shell",
-  "presentation": {
-    "echo": true,
-    "reveal": "silent",
-    "focus": false,
-    "panel": "shared",
-    "showReuseMessage": true,
-    "clear": false
-  },
   "tasks": [
     {
       "label": "compile",
-      "group": "build",
-      "isBackground": true,
-      "problemMatcher": "$tsc-watch"
+      "type": "npm",
+      "script": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "isBackground": false,
+      "problemMatcher": "$esbuild-watch"
     },
     {
       "label": "watch",
+      "type": "npm",
+      "script": "watch",
       "isBackground": true,
-      "problemMatcher": "$tsc-watch"
+      "problemMatcher": "$esbuild-watch"
+    },
+    {
+      "label": "typecheck",
+      "type": "npm",
+      "script": "typecheck",
+      "isBackground": false,
+      "problemMatcher": "$tsc"
     },
     {
       "label": "lint",
-      "isBackground": true,
-      "problemMatcher": "$tsc-watch"
+      "type": "npm",
+      "script": "lint",
+      "isBackground": false,
+      "problemMatcher": "$eslint-stylish"
     }
   ]
 }

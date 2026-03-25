@@ -2,7 +2,7 @@
   "name": "vscode-insertdatestring",
   "displayName": "Insert Date String",
   "description": "Insert the current date and time according to configured format.",
-  "version": "2.3.1",
+  "version": "3.0.0",
   "publisher": "jsynowiec",
   "homepage": "https://github.com/jsynowiec/vscode-insertdatestring#readme",
   "bugs": {
@@ -14,46 +14,42 @@
     "email": "github@jakubsynowiec.info",
     "url": "https://jakubsynowiec.info"
   },
-  "main": "./out/src/extension",
+  "main": "./dist/extension.js",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/jsynowiec/vscode-insertdatestring"
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "lint": "eslint -c .eslintrc.js --ext .ts .",
-    "prettier": "prettier --write '**/*.{ts,json,md,yml,js}'"
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "prettier": "prettier --write '**/*.{ts,json,md,yml,js,mjs}'"
   },
   "dependencies": {
-    "date-format-lite": "^17.7.0"
+    "dayjs": "^1.11.20"
   },
   "devDependencies": {
-    "@types/node": "^12.20.45",
-    "@types/vscode": "1.41",
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/eslint-plugin-tslint": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-prettier": "^3.4.1",
-    "prettier": "^2.5.1",
-    "tslint": "^6.1.3",
-    "typescript": "^3.9.10"
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.96.0",
+    "esbuild": "^0.27.4",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.4.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.57.2"
   },
   "engines": {
-    "vscode": "^1.41.0",
-    "node": ">=12.4.0 <13"
+    "vscode": "^1.96.0",
+    "node": ">=22"
   },
-  "activationEvents": [
-    "onCommand:insertDateString.insertDateTime",
-    "onCommand:insertDateString.insertDate",
-    "onCommand:insertDateString.insertTime",
-    "onCommand:insertDateString.insertTimestamp",
-    "onCommand:insertDateString.insertOwnFormatDateTime"
-  ],
+  "volta": {
+    "node": "22.22.2"
+  },
   "categories": [
     "Other",
     "Snippets"
@@ -93,7 +89,7 @@
       "properties": {
         "insertDateString.format": {
           "type": "string",
-          "default": "YYYY-MM-DD hh:mm:ss",
+          "default": "YYYY-MM-DD HH:mm:ss",
           "description": "Date time format to be used."
         },
         "insertDateString.formatDate": {
@@ -103,7 +99,7 @@
         },
         "insertDateString.formatTime": {
           "type": "string",
-          "default": "hh:mm:ss",
+          "default": "HH:mm:ss",
           "description": "Time format to be used."
         }
       }
@@ -127,8 +123,5 @@
   "galleryBanner": {
     "color": "#005696",
     "theme": "dark"
-  },
-  "volta": {
-    "node": "12.18.2"
   }
 }
