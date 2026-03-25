@@ -5,5 +5,5 @@
 .editorconfig
 .prettierrc
 .prettierignore
-.eslintrc.json
+eslint.config.mjs
 tsconfig.json
