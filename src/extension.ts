@@ -88,6 +88,7 @@ export function activate(context: ExtensionContext): void {
           prompt: INPUT_PROMPT,
         })
         .then((format) => {
+          if (format === undefined) return;
           replaceEditorSelection(getFormattedDateString(format));
         });
     }),
