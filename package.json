@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "@types/vscode": "1.41",
+    "@types/vscode": "^1.96.0",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/eslint-plugin-tslint": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
@@ -44,19 +44,12 @@
     "typescript": "^5.8.0"
   },
   "engines": {
-    "vscode": "^1.41.0",
+    "vscode": "^1.96.0",
     "node": ">=22"
   },
   "volta": {
     "node": "22.22.2"
   },
-  "activationEvents": [
-    "onCommand:insertDateString.insertDateTime",
-    "onCommand:insertDateString.insertDate",
-    "onCommand:insertDateString.insertTime",
-    "onCommand:insertDateString.insertTimestamp",
-    "onCommand:insertDateString.insertOwnFormatDateTime"
-  ],
   "categories": [
     "Other",
     "Snippets"
