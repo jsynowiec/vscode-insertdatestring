@@ -82,6 +82,10 @@
       {
         "command": "insertDateString.insertOwnFormatDateTime",
         "title": "Insert Formatted DateTime"
+      },
+      {
+        "command": "insertDateString.resetWorkspaceFormat",
+        "title": "Reset Workspace DateTime Format Override"
       }
     ],
     "configuration": {

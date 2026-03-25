@@ -8,6 +8,7 @@ dayjs.extend(isoWeekPlugin);
 
 const INPUT_PROMPT = "Date and Time format";
 const DEFAULT_FORMAT = "YYYY-MM-DD HH:mm:ss";
+const LAST_FORMAT_KEY = "lastCustomFormat";
 
 function getConfiguredFormat(format = "format"): string {
   const insertDateStringConfiguration =
@@ -82,15 +83,25 @@ export function activate(context: ExtensionContext): void {
 
   context.subscriptions.push(
     commands.registerCommand("insertDateString.insertOwnFormatDateTime", () => {
+      const lastFormat = context.workspaceState.get<string>(LAST_FORMAT_KEY);
       window
         .showInputBox({
-          value: getConfiguredFormat(),
+          value: lastFormat ?? getConfiguredFormat(),
           prompt: INPUT_PROMPT,
         })
         .then((format) => {
           if (format === undefined) return;
           replaceEditorSelection(getFormattedDateString(format));
+          if (format !== getConfiguredFormat()) {
+            context.workspaceState.update(LAST_FORMAT_KEY, format);
+          }
         });
+    }),
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand("insertDateString.resetWorkspaceFormat", () => {
+      context.workspaceState.update(LAST_FORMAT_KEY, undefined);
     }),
   );
 }
