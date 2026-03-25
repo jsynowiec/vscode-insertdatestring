@@ -28,7 +28,7 @@
     "prettier": "prettier --write '**/*.{ts,json,md,yml,js}'"
   },
   "dependencies": {
-    "date-format-lite": "^17.7.0"
+    "dayjs": "^1.11.20"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
@@ -89,7 +89,7 @@
       "properties": {
         "insertDateString.format": {
           "type": "string",
-          "default": "YYYY-MM-DD hh:mm:ss",
+          "default": "YYYY-MM-DD HH:mm:ss",
           "description": "Date time format to be used."
         },
         "insertDateString.formatDate": {
@@ -99,7 +99,7 @@
         },
         "insertDateString.formatTime": {
           "type": "string",
-          "default": "hh:mm:ss",
+          "default": "HH:mm:ss",
           "description": "Time format to be used."
         }
       }

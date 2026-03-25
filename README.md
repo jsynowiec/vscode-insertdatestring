@@ -10,6 +10,8 @@ A plugin for Visual Studio Code that inserts the current date and/or time accord
 
 **Notice** Version 2.0 changed settings namespace from `insertdatestring` to `insertDateString`. Please update your userspace and workspace settings.
 
+**Notice** Version 3.0 switched from `date-format-lite` to [dayjs](https://day.js.org/) for date formatting. Token semantics for `h`/`hh`/`H`/`HH` have changed to align with dayjs/moment.js conventions — `HH` is now 24-hour (was 12-hour) and `hh` is now 12-hour (was 24-hour). The default format has been updated. If you use a custom format with `hh` or `HH`, please review and update your settings.
+
 ## Installation
 
 Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by pressing `F1`, type `ext install` and then look for **Insert Date String** extension.
@@ -32,58 +34,75 @@ Following commands are available:
 
 ```
 // Date format to be used.
-"insertDateString.format": "YYYY-MM-DD hh:mm:ss",
+"insertDateString.format": "YYYY-MM-DD HH:mm:ss",
 "insertDateString.formatDate": "YYYY-MM-DD",
-"insertDateString.formatTime": "hh:mm:ss",
+"insertDateString.formatTime": "HH:mm:ss",
 ```
 
 ## Syntax
 
-- **Y** - A two digit representation of a year without leading zeros. Examples: 99 or 3
-- **YY** - A two digit representation of a year. Examples: 99 or 03
-- **YYYY** - A full numeric representation of a year, 4 digits. Examples: 1999 or 2003
-- **M** - Numeric representation of a month, without leading zeros. 1 through 12
-- **MM** - Numeric representation of a month, with leading zeros. 01 through 12
-- **MMM** - A short textual representation of a month, three letters. Jan through Dec
-- **MMMM** - A full textual representation of a month, such as January or March. January through December
-- **D** - Day of the month without leading zeros. 1 to 31
-- **DD** - Day of the month, 2 digits with leading zeros. 01 to 31
-- **DDD** - A textual representation of a day, three letters. Mon through Sun
-- **DDDD** - A full textual representation of the day of the week. Sunday through Saturday
-- **H** - 12-hour format of an hour without leading zeros. 1 through 12
-- **HH** - 12-hour format of an hour with leading zeros. 01 through 12
-- **h** - 24-hour format of an hour without leading zeros. 0 through 23
-- **hh** - 24-hour format of an hour with leading zeros. 00 through 23
-- **m** - Minutes without leading zeros. 0 through 59
-- **mm** - Minutes with leading zeros. 00 to 59
-- **s** - Seconds without leading zeros. 0 through 59
-- **ss** - Seconds with leading zeros. 00 to 59
-- **S** - Milliseconds without leading zeros. 0 through 999
-- **SS** - Milliseconds with leading zeros. 000 to 999
-- **U** - Milliseconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
-- **u** - Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
-- **A** - Ante meridiem and Post meridiem. AM or PM
+Format strings use [dayjs](https://day.js.org/docs/en/display/format) token conventions.
 
-### Time zone designators
+### Year
 
-- **Z** - Time offsets from UTC in the form ±hh[:mm] Examples: +02, +02:30
-- **ZZ** - Time offsets from UTC in the form ±hh[mm] Examples: +02, +0230
-- **ZZZ** - Time offsets from UTC in the form ±hh:mm Examples: +02:00, +02:30
-- **ZZZZ** - Time offsets from UTC in the form ±hhmm Examples: +0200, +0230
+- **YY** - Two-digit year. Examples: 99 or 03
+- **YYYY** - Four-digit year. Examples: 1999 or 2003
 
-### ISO-8601
+### Month
 
-- **iso** - Simplified extended ISO format (ISO 8601) without miliseconds. The timezone is always zero UTC offset, as denoted by the suffix "Z".
-- **w** - Day of the week. 1 (for Monday) through 7 (for Sunday)
-- **W** - Week number of year, first week is the week with 4 January in it
-- **o** - ISO 8601 year number. This has the same value as YYYY, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead
+- **M** - Month, without leading zeros. 1 through 12
+- **MM** - Month, with leading zeros. 01 through 12
+- **MMM** - Abbreviated month name. Jan through Dec
+- **MMMM** - Full month name. January through December
+
+### Day
+
+- **D** - Day of the month, without leading zeros. 1 to 31
+- **DD** - Day of the month, with leading zeros. 01 to 31
+- **d** - Day of the week. 0 (Sunday) through 6 (Saturday)
+- **ddd** - Abbreviated day name. Sun through Sat
+- **dddd** - Full day name. Sunday through Saturday
+
+### Hour
+
+- **H** - 24-hour format, without leading zeros. 0 through 23
+- **HH** - 24-hour format, with leading zeros. 00 through 23
+- **h** - 12-hour format, without leading zeros. 1 through 12
+- **hh** - 12-hour format, with leading zeros. 01 through 12
+
+### Minute, second, millisecond
+
+- **m** - Minutes, without leading zeros. 0 through 59
+- **mm** - Minutes, with leading zeros. 00 to 59
+- **s** - Seconds, without leading zeros. 0 through 59
+- **ss** - Seconds, with leading zeros. 00 to 59
+- **SSS** - Milliseconds, with leading zeros. 000 to 999
+
+### AM/PM and timezone
+
+- **A** - AM or PM
+- **a** - am or pm
+- **Z** - UTC offset. Examples: +05:30, -07:00
+- **ZZ** - UTC offset without colon. Examples: +0530, -0700
+
+### Unix timestamps
+
+- **X** - Unix timestamp in seconds
+- **x** - Unix timestamp in milliseconds
+
+### ISO week tokens
+
+- **w** - ISO weekday. 1 (Monday) through 7 (Sunday)
+- **W** - ISO week number of year. First week is the week containing 4 January
+- **o** - ISO week-year. Same as `YYYY` except at year boundaries where the ISO week belongs to the adjacent year
+- **iso** - Special value: outputs a simplified ISO 8601 string in UTC (e.g. `2013-07-16T20:13:31Z`)
 
 ### Examples
 
-- UTC date and time: `iso` (2013-07-16T20:13:31Z)
 - Year and month: `YYYY-MM` (2013-07)
 - Complete date: `YYYY-MM-DD` (2013-07-16)
-- Complete date plus hours, minutes, seconds and difference to GMT: `YYYY-MM-DDThh:mm:ssZZZ` (2013-07-16T20:13:31+01:00)
+- Complete date and time: `YYYY-MM-DD HH:mm:ss` (2013-07-16 20:13:31)
+- Complete date plus hours, minutes, seconds and UTC offset: `YYYY-MM-DDTHH:mm:ssZ` (2013-07-16T20:13:31+01:00)
 
 ## License
 

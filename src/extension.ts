@@ -1,9 +1,13 @@
+// ABOUTME: VS Code extension entry point — registers date/time insertion commands.
+// ABOUTME: Inserts formatted date strings into the active editor using dayjs.
 import { commands, workspace, window, ExtensionContext } from "vscode";
+import dayjs from "dayjs";
+import isoWeekPlugin from "dayjs/plugin/isoWeek";
 
-import "date-format-lite";
+dayjs.extend(isoWeekPlugin);
 
 const INPUT_PROMPT = "Date and Time format";
-const DEFAULT_FORMAT = "YYYY-MM-DD hh:mm:ss";
+const DEFAULT_FORMAT = "YYYY-MM-DD HH:mm:ss";
 
 function getConfiguredFormat(format = "format"): string {
   const insertDateStringConfiguration = workspace.getConfiguration(
@@ -13,8 +17,25 @@ function getConfiguredFormat(format = "format"): string {
 }
 
 function getFormattedDateString(userFormat = getConfiguredFormat()): string {
-  const now = new Date();
-  return now.format(userFormat);
+  const now = dayjs();
+
+  // Special-case: "iso" outputs a simplified ISO 8601 string (UTC, no milliseconds)
+  if (userFormat === "iso") {
+    return now.toISOString().replace(/\.\d{3}Z$/, "Z");
+  }
+
+  // Pre-substitute tokens that dayjs does not support natively:
+  //   w  = ISO weekday, 1 (Monday) through 7 (Sunday)
+  //   W  = ISO week number of year
+  //   o  = ISO week-year (same as year except at week boundaries)
+  // These are replaced with their computed values before dayjs processes
+  // the remaining tokens (YYYY, MM, DD, HH, mm, ss, etc.).
+  const processedFormat = userFormat
+    .replace(/W/g, String(now.isoWeek()))
+    .replace(/w/g, String(now.isoWeekday()))
+    .replace(/o/g, String(now.isoWeekYear()));
+
+  return now.format(processedFormat);
 }
 
 function replaceEditorSelection(text: string) {
