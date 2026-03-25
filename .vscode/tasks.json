@@ -5,7 +5,10 @@
       "label": "compile",
       "type": "npm",
       "script": "build",
-      "group": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "isBackground": false,
       "problemMatcher": "$esbuild-watch"
     },

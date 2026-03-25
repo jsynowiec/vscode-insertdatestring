@@ -2,15 +2,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Extension",
+      "name": "Run Extension",
       "type": "extensionHost",
       "request": "launch",
-      "runtimeExecutable": "${execPath}",
-      "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
-      "stopOnEntry": false,
-      "sourceMaps": true,
+      "args": [
+        "--profile-temp",
+        "--disable-extensions",
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
-      "preLaunchTask": "compile"
+      "preLaunchTask": "${defaultBuildTask}"
     }
   ]
 }
