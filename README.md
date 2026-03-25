@@ -24,7 +24,8 @@ Following commands are available:
 - `Insert Date` - Inserts current date according to configured format (`formatDate`) at the cursor position.
 - `Insert Time` - Inserts current time according to configured format (`formatTime`) at the cursor position.
 - `Insert Timestamp` - Inserts current timestamp in milliseconds at the cursor position.
-- `Insert Formatted DateTime` (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>I</kbd> on OS X, <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> on Windows and Linux) - Prompt user for format and insert formatted date and/or time at the cursor position.
+- `Insert Formatted DateTime` (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>I</kbd> on OS X, <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> on Windows and Linux) - Prompt user for format and insert formatted date and/or time at the cursor position. The last custom format entered is remembered per workspace using VS Code's workspace context which is separate from the `insertDateString.format` setting and is not visible in your workspace settings file.
+- `Reset Workspace DateTime Format Override` - Clears the workspace-stored format override, restoring the `insertDateString.format` setting as the default for `Insert Formatted DateTime`.
 
 ## Available settings
 
