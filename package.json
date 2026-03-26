@@ -105,6 +105,11 @@
           "type": "string",
           "default": "HH:mm:ss",
           "description": "Time format to be used."
+        },
+        "insertDateString.timezone": {
+          "type": "string",
+          "default": "",
+          "description": "IANA timezone name (e.g. 'America/New_York', 'Europe/Warsaw', 'UTC'). Leave empty to use local system time."
         }
       }
     },

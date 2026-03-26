@@ -33,13 +33,32 @@ Following commands are available:
 - Date and time format string (_this affects `Insert DateTime` output_):
 - Date format string (_this affects `Insert Date` output_):
 - Time format string (_this affects `Insert Time` output_):
+- Timezone (_applies to all format-based commands; leave empty for local system time_):
 
 ```
 // Date format to be used.
 "insertDateString.format": "YYYY-MM-DD HH:mm:ss",
 "insertDateString.formatDate": "YYYY-MM-DD",
 "insertDateString.formatTime": "HH:mm:ss",
+// Timezone (IANA name, e.g. "America/New_York"). Default: "" (local time).
+"insertDateString.timezone": "",
 ```
+
+## Timezone
+
+Set `insertDateString.timezone` to an [IANA timezone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to produce timestamps in a consistent timezone regardless of the local system clock. This is useful for distributed teams that need to agree on a shared reference timezone.
+
+```json
+"insertDateString.timezone": "America/New_York"
+```
+
+**Supported values:** Any IANA timezone name (e.g. `UTC`, `America/New_York`, `Europe/Warsaw`, `Asia/Tokyo`). Leave empty to use local system time.
+
+**Affected commands:** `Insert DateTime`, `Insert Date`, `Insert Time`, `Insert Formatted DateTime`.
+
+**Unaffected commands:** `Insert Timestamp` always produces a Unix timestamp in milliseconds (UTC by definition). The `iso` format token always outputs UTC regardless of this setting.
+
+If the configured value is not a valid IANA timezone, a warning is shown and local system time is used as a fallback.
 
 ## Syntax
 

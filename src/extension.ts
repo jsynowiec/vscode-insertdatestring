@@ -3,8 +3,12 @@
 import { commands, workspace, window, ExtensionContext } from "vscode";
 import dayjs from "dayjs";
 import isoWeekPlugin from "dayjs/plugin/isoWeek";
+import utcPlugin from "dayjs/plugin/utc";
+import timezonePlugin from "dayjs/plugin/timezone";
 
 dayjs.extend(isoWeekPlugin);
+dayjs.extend(utcPlugin);
+dayjs.extend(timezonePlugin);
 
 const INPUT_PROMPT = "Date and Time format";
 const DEFAULT_FORMAT = "YYYY-MM-DD HH:mm:ss";
@@ -16,10 +20,51 @@ function getConfiguredFormat(format = "format"): string {
   return insertDateStringConfiguration.get(format, DEFAULT_FORMAT);
 }
 
-function getFormattedDateString(userFormat = getConfiguredFormat()): string {
-  const now = dayjs();
+function isValidTimezone(tz: string): boolean {
+  try {
+    new Intl.DateTimeFormat(undefined, { timeZone: tz });
+    return true;
+  } catch {
+    return false;
+  }
+}
 
-  // Special-case: "iso" outputs a simplified ISO 8601 string (UTC, no milliseconds)
+function getConfiguredTimezone(): string | undefined {
+  const tz = workspace
+    .getConfiguration("insertDateString")
+    .get<string>("timezone", "");
+  return tz || undefined;
+}
+
+function getFormattedDateString(userFormat = getConfiguredFormat()): string {
+  const timezone = getConfiguredTimezone();
+  let now: dayjs.Dayjs;
+
+  if (timezone) {
+    if (isValidTimezone(timezone)) {
+      now = dayjs().tz(timezone);
+    } else {
+      void window
+        .showWarningMessage(
+          `Insert Date String: "${timezone}" is not a valid IANA timezone. Using local time.`,
+          "Open Settings",
+        )
+        .then((selection) => {
+          if (selection === "Open Settings") {
+            void commands.executeCommand(
+              "workbench.action.openSettings",
+              "insertDateString.timezone",
+            );
+          }
+        });
+      now = dayjs();
+    }
+  } else {
+    now = dayjs();
+  }
+
+  // Special-case: "iso" outputs a simplified ISO 8601 string.
+  // toISOString() always returns UTC regardless of any configured timezone — by design.
   if (userFormat === "iso") {
     return now.toISOString().replace(/\.\d{3}Z$/, "Z");
   }
