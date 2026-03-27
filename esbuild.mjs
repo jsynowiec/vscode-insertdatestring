@@ -12,6 +12,7 @@ const options = {
   external: ["vscode"],
   format: "cjs",
   platform: "node",
+  target: "node22",
   sourcemap: true,
   minify: !watch,
 };

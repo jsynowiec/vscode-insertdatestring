@@ -147,6 +147,7 @@ export function activate(context: ExtensionContext): void {
   context.subscriptions.push(
     commands.registerCommand("insertDateString.resetWorkspaceFormat", () => {
       context.workspaceState.update(LAST_FORMAT_KEY, undefined);
+      void window.showInformationMessage("Workspace format override cleared.");
     }),
   );
 }

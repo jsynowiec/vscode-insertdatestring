@@ -10,3 +10,8 @@ out
 eslint.config.mjs
 esbuild.mjs
 tsconfig.json
+CLAUDE.md
+*.local.md
+.claude
+.private-journal
+.worktrees

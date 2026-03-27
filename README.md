@@ -10,7 +10,9 @@ A plugin for Visual Studio Code that inserts the current date and/or time accord
 
 ## Breaking Changes
 
-- Version 3.0 switched from `date-format-lite` to [dayjs](https://day.js.org/) for date formatting. Token semantics for `h`/`hh`/`H`/`HH` have changed to align with dayjs/moment.js conventions — `HH` is now 24-hour (was 12-hour) and `hh` is now 12-hour (was 24-hour). The default format has been updated. If you use a custom format with `hh` or `HH`, please review and update your settings.
+- Version 3.0 switched from `date-format-lite` to [dayjs](https://day.js.org/) for date formatting:
+  - Token semantics for `h`/`hh`/`H`/`HH` have changed — `HH` is now 24-hour (was 12-hour) and `hh` is now 12-hour (was 24-hour). The default format has been updated. If you use a custom format with `hh` or `HH`, please review and update your settings.
+  - Literal-text escape syntax changed: `date-format-lite` used `"text"` or `'text'` (e.g. `'T'`); dayjs uses `[text]` (e.g. `[T]`). If you use literal escaping in your format, update to the bracket syntax.
 - Version 2.0 changed settings namespace from `insertdatestring` to `insertDateString`. Please update your userspace and workspace settings.
 
 ## Installation
