@@ -83,17 +83,18 @@ function getFormattedDateString(userFormat = getConfiguredFormat()): string {
   return now.format(processedFormat);
 }
 
-function replaceEditorSelection(text: string) {
+async function replaceEditorSelection(text: string): Promise<void> {
   const editor = window.activeTextEditor;
-  if (editor) {
-    const selections = editor.selections;
-
-    editor.edit((editBuilder) => {
-      selections.forEach((selection) => {
-        editBuilder.replace(selection, "");
-        editBuilder.insert(selection.active, text);
-      });
+  if (!editor) return;
+  const success = await editor.edit((editBuilder) => {
+    editor.selections.forEach((selection) => {
+      editBuilder.replace(selection, text);
     });
+  });
+  if (!success) {
+    void window.showWarningMessage(
+      "Could not insert date string into a read-only document.",
+    );
   }
 }
 
@@ -127,21 +128,26 @@ export function activate(context: ExtensionContext): void {
   );
 
   context.subscriptions.push(
-    commands.registerCommand("insertDateString.insertOwnFormatDateTime", () => {
-      const lastFormat = context.workspaceState.get<string>(LAST_FORMAT_KEY);
-      window
-        .showInputBox({
+    commands.registerCommand(
+      "insertDateString.insertOwnFormatDateTime",
+      async () => {
+        const lastFormat = context.workspaceState.get<string>(LAST_FORMAT_KEY);
+        const format = await window.showInputBox({
           value: lastFormat ?? getConfiguredFormat(),
           prompt: INPUT_PROMPT,
-        })
-        .then((format) => {
-          if (format === undefined) return;
-          replaceEditorSelection(getFormattedDateString(format));
-          if (format !== getConfiguredFormat()) {
-            context.workspaceState.update(LAST_FORMAT_KEY, format);
-          }
         });
-    }),
+        if (format === undefined) return;
+        try {
+          await replaceEditorSelection(getFormattedDateString(format));
+        } catch {
+          void window.showWarningMessage("Could not format date string.");
+          return;
+        }
+        if (format !== getConfiguredFormat()) {
+          void context.workspaceState.update(LAST_FORMAT_KEY, format);
+        }
+      },
+    ),
   );
 
   context.subscriptions.push(
