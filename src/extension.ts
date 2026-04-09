@@ -3,12 +3,16 @@
 import { commands, workspace, window, ExtensionContext } from "vscode";
 import dayjs from "dayjs";
 import isoWeekPlugin from "dayjs/plugin/isoWeek";
+import advancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import utcPlugin from "dayjs/plugin/utc";
 import timezonePlugin from "dayjs/plugin/timezone";
 
+dayjs.extend(advancedFormatPlugin);
 dayjs.extend(isoWeekPlugin);
 dayjs.extend(utcPlugin);
 dayjs.extend(timezonePlugin);
+
+let lastWarnedTimezone: string | undefined;
 
 const INPUT_PROMPT = "Date and Time format";
 const DEFAULT_FORMAT = "YYYY-MM-DD HH:mm:ss";
@@ -44,19 +48,22 @@ function getFormattedDateString(userFormat = getConfiguredFormat()): string {
     if (isValidTimezone(timezone)) {
       now = dayjs().tz(timezone);
     } else {
-      void window
-        .showWarningMessage(
-          `Insert Date String: "${timezone}" is not a valid IANA timezone. Using local time.`,
-          "Open Settings",
-        )
-        .then((selection) => {
-          if (selection === "Open Settings") {
-            void commands.executeCommand(
-              "workbench.action.openSettings",
-              "insertDateString.timezone",
-            );
-          }
-        });
+      if (timezone !== lastWarnedTimezone) {
+        lastWarnedTimezone = timezone;
+        void window
+          .showWarningMessage(
+            `Insert Date String: "${timezone}" is not a valid IANA timezone. Using local time.`,
+            "Open Settings",
+          )
+          .then((selection) => {
+            if (selection === "Open Settings") {
+              void commands.executeCommand(
+                "workbench.action.openSettings",
+                "insertDateString.timezone",
+              );
+            }
+          });
+      }
       now = dayjs();
     }
   } else {
@@ -73,12 +80,17 @@ function getFormattedDateString(userFormat = getConfiguredFormat()): string {
   //   w  = ISO weekday, 1 (Monday) through 7 (Sunday)
   //   W  = ISO week number of year
   //   o  = ISO week-year (same as year except at week boundaries)
-  // These are replaced with their computed values before dayjs processes
-  // the remaining tokens (YYYY, MM, DD, HH, mm, ss, etc.).
-  const processedFormat = userFormat
-    .replace(/W/g, String(now.isoWeek()))
-    .replace(/w/g, String(now.isoWeekday()))
-    .replace(/o/g, String(now.isoWeekYear()));
+  // The regex matches bracket escapes first (preserving them intact) so
+  // that w/W/o inside [literal text] are not replaced.
+  const processedFormat = userFormat.replace(
+    /\[([^\]]*)\]|W|w|o/g,
+    (match) => {
+      if (match[0] === "[") return match;
+      if (match === "W") return String(now.isoWeek());
+      if (match === "w") return String(now.isoWeekday());
+      return String(now.isoWeekYear());
+    },
+  );
 
   return now.format(processedFormat);
 }
@@ -152,7 +164,7 @@ export function activate(context: ExtensionContext): void {
 
   context.subscriptions.push(
     commands.registerCommand("insertDateString.resetWorkspaceFormat", () => {
-      context.workspaceState.update(LAST_FORMAT_KEY, undefined);
+      void context.workspaceState.update(LAST_FORMAT_KEY, undefined);
       void window.showInformationMessage("Workspace format override cleared.");
     }),
   );
