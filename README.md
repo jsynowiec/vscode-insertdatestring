@@ -131,10 +131,10 @@ Format strings use [dayjs](https://day.js.org/docs/en/display/format) token conv
 
 Released under the [MIT License][license].
 
-[version-badge]: https://img.shields.io/visual-studio-marketplace/v/jsynowiec.vscode-insertdatestring
+[version-badge]: https://badgen.net/vs-marketplace/v/jsynowiec.vscode-insertdatestring
 [marketplace]: https://marketplace.visualstudio.com/items?itemName=jsynowiec.vscode-insertdatestring
-[installs-badge]: https://img.shields.io/visual-studio-marketplace/i/jsynowiec.vscode-insertdatestring
-[ratings-badge]: https://img.shields.io/visual-studio-marketplace/r/jsynowiec.vscode-insertdatestring
+[installs-badge]: https://badgen.net/vs-marketplace/i/jsynowiec.vscode-insertdatestring
+[ratings-badge]: https://badgen.net/vs-marketplace/rating/jsynowiec.vscode-insertdatestring
 [marketplace-ratings]: https://marketplace.visualstudio.com/items?itemName=jsynowiec.vscode-insertdatestring#review-details
 [license-badge]: https://img.shields.io/github/license/jsynowiec/vscode-insertdatestring.svg
 [license]: https://github.com/jsynowiec/vscode-insertdatestring/blob/master/LICENSE
