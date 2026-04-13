@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+- [ ] I have checked other issues for existing similar reports, both open and closed.
+
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
