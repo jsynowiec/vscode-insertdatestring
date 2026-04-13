@@ -1,6 +1,12 @@
 // ABOUTME: VS Code extension entry point — registers date/time insertion commands.
 // ABOUTME: Inserts formatted date strings into the active editor using dayjs.
-import { commands, workspace, window, ExtensionContext } from "vscode";
+import {
+  commands,
+  workspace,
+  window,
+  ExtensionContext,
+  SnippetString,
+} from "vscode";
 import dayjs from "dayjs";
 import isoWeekPlugin from "dayjs/plugin/isoWeek";
 import advancedFormatPlugin from "dayjs/plugin/advancedFormat";
@@ -96,13 +102,11 @@ function getFormattedDateString(userFormat = getConfiguredFormat()): string {
 }
 
 async function replaceEditorSelection(text: string): Promise<void> {
+  const snippet = new SnippetString(text + "$0");
   const editor = window.activeTextEditor;
   if (!editor) return;
-  const success = await editor.edit((editBuilder) => {
-    editor.selections.forEach((selection) => {
-      editBuilder.replace(selection, text);
-    });
-  });
+
+  const success = await editor.insertSnippet(snippet);
   if (!success) {
     void window.showWarningMessage(
       "Could not insert date string into a read-only document.",
