@@ -17,5 +17,8 @@ tsconfig.lsif.json
 .claude/plans/
 .worktrees/
 
+# Codex local files
+.codex/**/*.override.*
+
 # Private journal (MCP tool data)
 .private-journal/

@@ -11,7 +11,10 @@ eslint.config.mjs
 esbuild.mjs
 tsconfig.json
 CLAUDE.md
+AGENTS.md
 *.local.md
 .claude
+.codex
 .private-journal
 .worktrees
+.github
