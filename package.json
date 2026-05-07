@@ -47,9 +47,6 @@
     "vscode": "^1.101.0",
     "node": ">=22"
   },
-  "volta": {
-    "node": "22.22.2"
-  },
   "categories": [
     "Other",
     "Snippets"

@@ -12,6 +12,8 @@ tsconfig.lsif.json
 
 .env
 
+mise.local.toml
+
 # Claude Code local files
 .claude/**/*.local.*
 .claude/plans/
