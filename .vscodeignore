@@ -1,5 +1,5 @@
 .vscode
-src
+src/**
 out
 **/*.ts
 **/*.map

@@ -15,6 +15,7 @@
     "url": "https://jakubsynowiec.info"
   },
   "main": "./dist/extension.js",
+  "activationEvents": [],
   "private": true,
   "repository": {
     "type": "git",
