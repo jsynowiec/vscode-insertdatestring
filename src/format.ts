@@ -1,7 +1,9 @@
 // ABOUTME: Format string tokenizer for dayjs with ISO-week extensions.
 // ABOUTME: Pre-substitutes custom tokens (w, o) while preserving all dayjs tokens.
 import dayjs from "dayjs";
-import "dayjs/plugin/isoWeek";
+import isoWeekPlugin from "dayjs/plugin/isoWeek";
+
+dayjs.extend(isoWeekPlugin);
 
 // Longest-match-first alternation. Note: `wo` and `ww` are omitted because
 // they require the weekOfYear plugin, which this extension does not load.
