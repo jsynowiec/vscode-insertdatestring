@@ -159,9 +159,11 @@ export function activate(context: ExtensionContext): void {
           void window.showWarningMessage("Could not format date string.");
           return;
         }
-        if (format !== getConfiguredFormat()) {
-          void context.workspaceState.update(LAST_FORMAT_KEY, format);
-        }
+        const configuredFormat = getConfiguredFormat();
+        void context.workspaceState.update(
+          LAST_FORMAT_KEY,
+          format === configuredFormat ? undefined : format,
+        );
       },
     ),
   );
