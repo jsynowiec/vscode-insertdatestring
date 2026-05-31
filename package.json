@@ -26,7 +26,8 @@
     "watch": "node esbuild.mjs --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "prettier": "prettier --write '**/*.{ts,json,md,yml,js,mjs}'"
+    "prettier": "prettier --write '**/*.{ts,json,md,yml,js,mjs}'",
+    "test": "tsx --test src/__tests__/*.test.ts"
   },
   "dependencies": {
     "dayjs": "^1.11.20"
@@ -40,6 +41,7 @@
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.4.0",
     "prettier": "^3.8.1",
+    "tsx": "^4.22.4",
     "typescript": "^5.8.0",
     "typescript-eslint": "^8.57.2"
   },
