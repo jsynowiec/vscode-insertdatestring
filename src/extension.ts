@@ -12,6 +12,7 @@ import isoWeekPlugin from "dayjs/plugin/isoWeek";
 import advancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import utcPlugin from "dayjs/plugin/utc";
 import timezonePlugin from "dayjs/plugin/timezone";
+import { processFormat } from "./format";
 
 dayjs.extend(advancedFormatPlugin);
 dayjs.extend(isoWeekPlugin);
@@ -84,19 +85,9 @@ function getFormattedDateString(userFormat = getConfiguredFormat()): string {
 
   // Pre-substitute tokens that dayjs does not support natively:
   //   w  = ISO weekday, 1 (Monday) through 7 (Sunday)
-  //   W  = ISO week number of year
   //   o  = ISO week-year (same as year except at week boundaries)
-  // The regex matches bracket escapes first (preserving them intact) so
-  // that w/W/o inside [literal text] are not replaced.
-  const processedFormat = userFormat.replace(
-    /\[([^\]]*)\]|W|w|o/g,
-    (match) => {
-      if (match[0] === "[") return match;
-      if (match === "W") return String(now.isoWeek());
-      if (match === "w") return String(now.isoWeekday());
-      return String(now.isoWeekYear());
-    },
-  );
+  // All other tokens are left to dayjs (advancedFormat + isoWeek plugins).
+  const processedFormat = processFormat(userFormat, now);
 
   return now.format(processedFormat);
 }
