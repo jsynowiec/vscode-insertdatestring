@@ -118,8 +118,8 @@ Format strings use [dayjs](https://day.js.org/docs/en/display/format) token conv
 - **w** - ISO weekday. 1 (Monday) through 7 (Sunday)
 - **W** - ISO week number of year. First week is the week containing 4 January
 - **WW** - ISO week number of year, zero-padded. Examples: 01, 22
-- **o** - ISO week-year. Same as `YYYY` except at year boundaries where the ISO week belongs to the adjacent year
-- **GGGG** - ISO week-year (standard dayjs token, alias for `o`)
+- **o** - ISO week-year (same as `GGGG`, provided for compatibility)
+- **GGGG** - ISO week-year (standard dayjs token). Same as `YYYY` except at year boundaries where the ISO week belongs to the adjacent year
 - **iso** - Special value: outputs a simplified ISO 8601 string in UTC (e.g. `2013-07-16T20:13:31Z`)
 
 ### Ordinal tokens
