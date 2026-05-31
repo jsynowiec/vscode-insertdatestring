@@ -102,7 +102,7 @@ function getFormattedDateString(userFormat = getConfiguredFormat()): string {
 }
 
 async function replaceEditorSelection(text: string): Promise<void> {
-  const snippet = new SnippetString(text + "$0");
+  const snippet = new SnippetString().appendText(text).appendTabstop(0);
   const editor = window.activeTextEditor;
   if (!editor) return;
 
