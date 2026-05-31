@@ -26,9 +26,11 @@
     "build": "node esbuild.mjs",
     "watch": "node esbuild.mjs --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "prettier": "prettier --write '**/*.{ts,json,md,yml,js,mjs}'",
-    "test": "tsx --test src/__tests__/*.test.ts"
+    "lint": "eslint src",
+    "prettier": "prettier --write 'src/*.{ts,json,md,yml,js,mjs}'",
+    "fmtcheck": "prettier --check 'src/*.{ts,json,md,yml,js,mjs}'",
+    "test": "tsx --test src/__tests__/*.test.ts",
+    "prebuild": "npm run typecheck && npm run lint && npm run fmtcheck"
   },
   "dependencies": {
     "dayjs": "^1.11.20"
