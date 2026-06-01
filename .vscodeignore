@@ -12,6 +12,7 @@ esbuild.mjs
 tsconfig.json
 CLAUDE.md
 AGENTS.md
+CHANGELOG.md
 *.local.md
 .claude/
 .codex/
