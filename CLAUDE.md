@@ -1,5 +1,3 @@
-# VSCode extension - Insert Date String
-
-@README.md
-
+@AGENTS.md
 @.claude/CLAUDE.local.md
+@README.md
