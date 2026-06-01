@@ -1,6 +1,6 @@
-.vscode
+.vscode/
 src/**
-out
+out/
 **/*.ts
 **/*.map
 .gitignore
@@ -13,9 +13,10 @@ tsconfig.json
 CLAUDE.md
 AGENTS.md
 *.local.md
-.claude
-.codex
-.private-journal
-.worktrees
-.github
+.claude/
+.codex/
+.private-journal/
+.worktrees/
+.github/
+node_modules/
 mise.toml
