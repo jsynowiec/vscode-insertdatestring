@@ -2,7 +2,7 @@
   "name": "vscode-insertdatestring",
   "displayName": "Insert Date & Time",
   "description": "Insert dates, times, ISO 8601 strings, Unix timestamps, and custom Day.js-formatted timestamps in VS Code — with shortcuts, timezone support, and configurable formats.",
-  "version": "3.1.7",
+  "version": "3.1.8",
   "publisher": "jsynowiec",
   "homepage": "https://github.com/jsynowiec/vscode-insertdatestring#readme",
   "bugs": {
