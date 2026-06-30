@@ -10,6 +10,8 @@ Insert the current date, time, ISO 8601 string, Unix/epoch timestamp, or any cus
 
 Perfect for Markdown notes, changelogs, front matter, logs, comments, templates, and distributed-team workflows that need consistent UTC or timezone-aware timestamps.
 
+![Recording](./assets/vscode-insertdatestring-recording.gif)
+
 ## Why use it?
 
 - Insert date/time with a keyboard shortcut
