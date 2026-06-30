@@ -1,4 +1,4 @@
-# VSCode extension - Insert Date String
+# Insert Date String for VS Code
 
 [![Sponsor][sponsor-badge]][sponsor]
 [![Version][version-badge]][marketplace]
@@ -6,21 +6,41 @@
 [![Installs][installs-badge]][marketplace]
 [![License][license-badge]][license]
 
-A plugin for Visual Studio Code that inserts the current date and/or time according to configured format. Available in [VisualStudio Marketplace][marketplace].
+Insert the current date, time, ISO 8601 string, Unix timestamp, or a custom-formatted date directly into the VS Code editor.
 
-## Breaking Changes
+Use it for notes, changelogs, Markdown front matter, logs, comments, templates, and any workflow where you need a fast, consistent timestamp.
 
-- Version 3.0 switched from `date-format-lite` to [dayjs](https://day.js.org/) for date formatting:
-  - Token semantics for `h`/`hh`/`H`/`HH` have changed — `HH` is now 24-hour (was 12-hour) and `hh` is now 12-hour (was 24-hour). The default format has been updated. If you use a custom format with `hh` or `HH`, please review and update your settings.
-  - Literal-text escape syntax changed: `date-format-lite` used `"text"` or `'text'` (e.g. `'T'`); dayjs uses `[text]` (e.g. `[T]`). If you use literal escaping in your format, update to the bracket syntax. If you want literal square brackets in the output, you need to escape the bracket characters using the same mechanism. For example, `[[]` produces a literal `[`.
+## Features
+
+- Insert date and time with a keyboard shortcut
+- Insert date only, time only, or Unix timestamp
+- Prompt for a one-off custom format
+- Configure default formats with Day.js-style tokens
+- Use a fixed IANA timezone such as `UTC`, `Europe/Warsaw`, or `America/New_York`
+- Works at the cursor position or replaces the current selection
+
+## Examples
+
+| Command                                | Example output              |
+| -------------------------------------- | --------------------------- |
+| `Insert DateTime`                      | `2026-06-30 14:05:09`       |
+| `Insert Date`                          | `2026-06-30`                |
+| `Insert Time`                          | `14:05:09`                  |
+| `Insert Timestamp`                     | `1782821109000`             |
+| `Insert Formatted DateTime` with `iso` | `2026-06-30T12:05:09Z`      |
+| Custom format `YYYY-MM-DDTHH:mm:ssZ`   | `2026-06-30T14:05:09+02:00` |
 
 ## Installation
 
-Open [Command Palette](https://code.visualstudio.com/docs/editor/codebasics) by pressing `F1`, type `ext install` and then look for **Insert Date String** extension.
+Install from the [Visual Studio Marketplace][marketplace], or open the Command Palette and run:
+
+```sh
+ext install jsynowiec.vscode-insertdatestring
+```
 
 ## Usage
 
-Following commands are available:
+Open the Command Palette and run one of these commands:
 
 - `Insert DateTime` (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>I</kbd> on OS X, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> on Windows and Linux) - Inserts current date and/or time according to configured format (`format`) at the cursor position.
 - `Insert Date` - Inserts current date according to configured format (`formatDate`) at the cursor position.
@@ -36,14 +56,15 @@ Following commands are available:
 - Time format string (_this affects `Insert Time` output_):
 - Timezone (_applies to all format-based commands; leave empty for local system time_):
 
-```
-// Date format to be used.
-"insertDateString.format": "YYYY-MM-DD HH:mm:ss",
-"insertDateString.formatDate": "YYYY-MM-DD",
-"insertDateString.formatTime": "HH:mm:ss",
-// Timezone (IANA name, e.g. "America/New_York"). Default: "" (local time).
-"insertDateString.timezone": "",
-```
+Configure the default output in your user or workspace settings:
+
+````json
+{
+  "insertDateString.format": "YYYY-MM-DD HH:mm:ss",
+  "insertDateString.formatDate": "YYYY-MM-DD",
+  "insertDateString.formatTime": "HH:mm:ss",
+  "insertDateString.timezone": ""
+}
 
 ## Timezone
 
@@ -51,7 +72,7 @@ Set `insertDateString.timezone` to an [IANA timezone name](https://en.wikipedia.
 
 ```json
 "insertDateString.timezone": "America/New_York"
-```
+````
 
 **Supported values:** Any IANA timezone name (e.g. `UTC`, `America/New_York`, `Europe/Warsaw`, `Asia/Tokyo`). Leave empty to use local system time.
 
@@ -131,6 +152,12 @@ Format strings use [dayjs](https://day.js.org/docs/en/display/format) token conv
 - Complete date: `YYYY-MM-DD` (2013-07-16)
 - Complete date and time: `YYYY-MM-DD HH:mm:ss` (2013-07-16 20:13:31)
 - Complete date plus hours, minutes, seconds and UTC offset: `YYYY-MM-DDTHH:mm:ssZ` (2013-07-16T20:13:31+01:00)
+
+## Breaking Changes
+
+- Version 3.0 switched from `date-format-lite` to [dayjs](https://day.js.org/) for date formatting:
+  - Token semantics for `h`/`hh`/`H`/`HH` have changed — `HH` is now 24-hour (was 12-hour) and `hh` is now 12-hour (was 24-hour). The default format has been updated. If you use a custom format with `hh` or `HH`, please review and update your settings.
+  - Literal-text escape syntax changed: `date-format-lite` used `"text"` or `'text'` (e.g. `'T'`); dayjs uses `[text]` (e.g. `[T]`). If you use literal escaping in your format, update to the bracket syntax. If you want literal square brackets in the output, you need to escape the bracket characters using the same mechanism. For example, `[[]` produces a literal `[`.
 
 ## License
 

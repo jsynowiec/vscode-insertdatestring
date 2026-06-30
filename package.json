@@ -1,7 +1,7 @@
 {
   "name": "vscode-insertdatestring",
   "displayName": "Insert Date String",
-  "description": "Insert the current date and time according to configured format.",
+  "description": "Insert the current date, time, ISO 8601 string, Unix timestamp, or custom Day.js-formatted date in VS Code.",
   "version": "3.1.7",
   "publisher": "jsynowiec",
   "homepage": "https://github.com/jsynowiec/vscode-insertdatestring#readme",
@@ -59,11 +59,32 @@
     "Snippets"
   ],
   "keywords": [
-    "iso 8601",
+    "date",
+    "time",
     "datetime",
-    "current date",
     "timestamp",
-    "template"
+    "unix timestamp",
+    "iso 8601",
+    "iso8601",
+    "current date",
+    "current time",
+    "insert date",
+    "insert time",
+    "date formatting",
+    "time formatting",
+    "timezone",
+    "iana timezone",
+    "dayjs",
+    "snippets",
+    "productivity",
+    "notes",
+    "markdown",
+    "logging",
+    "changelog",
+    "frontmatter",
+    "templates",
+    "vscode extension",
+    "visual studio code"
   ],
   "contributes": {
     "commands": [
