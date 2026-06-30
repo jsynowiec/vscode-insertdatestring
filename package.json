@@ -9,14 +9,9 @@
     "url": "https://github.com/jsynowiec/vscode-insertdatestring/issues"
   },
   "license": "MIT",
-  "author": {
-    "name": "Jakub Synowiec",
-    "email": "github@jakubsynowiec.info",
-    "url": "https://jakubsynowiec.info"
-  },
+  "author": "Jakub Synowiec",
   "main": "./dist/extension.js",
   "activationEvents": [],
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/jsynowiec/vscode-insertdatestring"
