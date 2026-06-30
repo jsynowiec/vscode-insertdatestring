@@ -1,4 +1,4 @@
-# Insert Date String for VS Code
+# Insert Date & Time extension for VS Code
 
 [![Sponsor][sponsor-badge]][sponsor]
 [![Version][version-badge]][marketplace]
@@ -6,20 +6,20 @@
 [![Installs][installs-badge]][marketplace]
 [![License][license-badge]][license]
 
-Insert the current date, time, ISO 8601 string, Unix timestamp, or a custom-formatted date directly into the VS Code editor.
+Insert the current date, time, ISO 8601 string, Unix/epoch timestamp, or any custom Day.js-formatted timestamp directly into the editor.
 
-Use it for notes, changelogs, Markdown front matter, logs, comments, templates, and any workflow where you need a fast, consistent timestamp.
+Perfect for Markdown notes, changelogs, front matter, logs, comments, templates, and distributed-team workflows that need consistent UTC or timezone-aware timestamps.
 
-## Features
+## Why use it?
 
-- Insert date and time with a keyboard shortcut
-- Insert date only, time only, or Unix timestamp
-- Prompt for a one-off custom format
-- Configure default formats with Day.js-style tokens
+- Insert date/time with a keyboard shortcut
+- Supports date, time, datetime, ISO 8601, Unix timestamp, and custom formats
+- Configure default Day.js-style formats
 - Use a fixed IANA timezone such as `UTC`, `Europe/Warsaw`, or `America/New_York`
-- Works at the cursor position or replaces the current selection
+- Insert at the cursor or replace the current selection
+- Prompt for one-off custom formats when needed
 
-## Examples
+## Quick examples
 
 | Command                                | Example output              |
 | -------------------------------------- | --------------------------- |
@@ -51,7 +51,7 @@ Open the Command Palette and run one of these commands:
 | `Insert Formatted DateTime`                | <kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>I</kbd> (OS X)<br><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> (Windows/Linux) | Prompt user for format and insert formatted date and/or time at the cursor position. The last custom format entered is remembered per workspace using VS Code's workspace context which is separate from the `insertDateString.format` setting and is not visible in your workspace settings file. |
 | `Reset Workspace DateTime Format Override` | —                                                                                                                                          | Clears the workspace-stored format override, restoring the `insertDateString.format` setting as the default for `Insert Formatted DateTime`.                                                                                                                                                       |
 
-## Available settings
+## Configuration
 
 - Date and time format string (_this affects `Insert DateTime` output_):
 - Date format string (_this affects `Insert Date` output_):
@@ -69,12 +69,14 @@ Configure the default output in your user or workspace settings:
 }
 ```
 
-## Timezone
+### Timezone
 
 Set `insertDateString.timezone` to an [IANA timezone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to produce timestamps in a consistent timezone regardless of the local system clock. This is useful for distributed teams that need to agree on a shared reference timezone.
 
 ```json
-"insertDateString.timezone": "America/New_York"
+{
+  "insertDateString.timezone": "America/New_York"
+}
 ```
 
 **Supported values:** Any IANA timezone name (e.g. `UTC`, `America/New_York`, `Europe/Warsaw`, `Asia/Tokyo`). Leave empty to use local system time.
@@ -85,7 +87,7 @@ Set `insertDateString.timezone` to an [IANA timezone name](https://en.wikipedia.
 
 If the configured value is not a valid IANA timezone, a warning is shown and local system time is used as a fallback.
 
-## Syntax
+## Format syntax
 
 Format strings use [dayjs](https://day.js.org/docs/en/display/format) token conventions.
 
@@ -155,6 +157,20 @@ Format strings use [dayjs](https://day.js.org/docs/en/display/format) token conv
 - Complete date: `YYYY-MM-DD` (2013-07-16)
 - Complete date and time: `YYYY-MM-DD HH:mm:ss` (2013-07-16 20:13:31)
 - Complete date plus hours, minutes, seconds and UTC offset: `YYYY-MM-DDTHH:mm:ssZ` (2013-07-16T20:13:31+01:00)
+
+## FAQ
+
+### Can I insert the current date and time with a keyboard shortcut?
+
+Yes. Run `Insert DateTime` or use `Shift+Cmd+I` on macOS and `Ctrl+Shift+I` on Windows/Linux.
+
+### Can I insert ISO 8601 or UTC timestamps?
+
+Yes. Use `Insert Formatted DateTime` with `iso`, or configure a custom format and timezone.
+
+### Can I customize the date format?
+
+Yes. Set `insertDateString.format`, `insertDateString.formatDate`, or `insertDateString.formatTime` using Day.js-style tokens.
 
 ## Breaking Changes
 
