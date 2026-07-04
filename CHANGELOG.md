@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.2.0]
+
+### Added
+
+- `insertDateString.locale` setting for localized month and weekday-name formatting in supported locales
+
 ## [3.1.6] - 2026-06-01
 
 ### Fixed
