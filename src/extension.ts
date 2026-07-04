@@ -12,7 +12,8 @@ import isoWeekPlugin from "dayjs/plugin/isoWeek";
 import advancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import utcPlugin from "dayjs/plugin/utc";
 import timezonePlugin from "dayjs/plugin/timezone";
-import { processFormat } from "./format";
+import { formatDateString } from "./dateString";
+import { resolveConfiguredLocale } from "./locales";
 
 dayjs.extend(advancedFormatPlugin);
 dayjs.extend(isoWeekPlugin);
@@ -20,6 +21,7 @@ dayjs.extend(utcPlugin);
 dayjs.extend(timezonePlugin);
 
 let lastWarnedTimezone: string | undefined;
+let lastWarnedLocale: string | undefined;
 
 const INPUT_PROMPT = "Date and Time format";
 const DEFAULT_FORMAT = "YYYY-MM-DD HH:mm:ss";
@@ -47,7 +49,34 @@ function getConfiguredTimezone(): string | undefined {
   return tz || undefined;
 }
 
-function getFormattedDateString(userFormat = getConfiguredFormat()): string {
+function getConfiguredLocale(): string {
+  return workspace
+    .getConfiguration("insertDateString")
+    .get<string>("locale", "");
+}
+
+function warnInvalidLocale(locale: string): void {
+  if (locale === lastWarnedLocale) return;
+
+  lastWarnedLocale = locale;
+  void window
+    .showWarningMessage(
+      `Insert Date String: "${locale}" is not a supported locale. Using English.`,
+      "Open Settings",
+    )
+    .then((selection) => {
+      if (selection === "Open Settings") {
+        void commands.executeCommand(
+          "workbench.action.openSettings",
+          "insertDateString.locale",
+        );
+      }
+    });
+}
+
+async function getFormattedDateString(
+  userFormat = getConfiguredFormat(),
+): Promise<string> {
   const timezone = getConfiguredTimezone();
   let now: dayjs.Dayjs;
 
@@ -77,19 +106,16 @@ function getFormattedDateString(userFormat = getConfiguredFormat()): string {
     now = dayjs();
   }
 
-  // Special-case: "iso" outputs a simplified ISO 8601 string.
-  // toISOString() always returns UTC regardless of any configured timezone — by design.
   if (userFormat === "iso") {
-    return now.toISOString().replace(/\.\d{3}Z$/, "Z");
+    return formatDateString(userFormat, now, undefined);
   }
 
-  // Pre-substitute tokens that dayjs does not support natively:
-  //   w  = ISO weekday, 1 (Monday) through 7 (Sunday)
-  //   o  = ISO week-year (same as year except at week boundaries)
-  // All other tokens are left to dayjs (advancedFormat + isoWeek plugins).
-  const processedFormat = processFormat(userFormat, now);
+  const localeResolution = await resolveConfiguredLocale(getConfiguredLocale());
+  if (localeResolution.invalidLocale) {
+    warnInvalidLocale(localeResolution.invalidLocale);
+  }
 
-  return now.format(processedFormat);
+  return formatDateString(userFormat, now, localeResolution.locale);
 }
 
 async function replaceEditorSelection(text: string): Promise<void> {
@@ -107,23 +133,23 @@ async function replaceEditorSelection(text: string): Promise<void> {
 
 export function activate(context: ExtensionContext): void {
   context.subscriptions.push(
-    commands.registerCommand("insertDateString.insertDateTime", () =>
-      replaceEditorSelection(getFormattedDateString()),
+    commands.registerCommand("insertDateString.insertDateTime", async () =>
+      replaceEditorSelection(await getFormattedDateString()),
     ),
   );
 
   context.subscriptions.push(
-    commands.registerCommand("insertDateString.insertDate", () =>
+    commands.registerCommand("insertDateString.insertDate", async () =>
       replaceEditorSelection(
-        getFormattedDateString(getConfiguredFormat("formatDate")),
+        await getFormattedDateString(getConfiguredFormat("formatDate")),
       ),
     ),
   );
 
   context.subscriptions.push(
-    commands.registerCommand("insertDateString.insertTime", () =>
+    commands.registerCommand("insertDateString.insertTime", async () =>
       replaceEditorSelection(
-        getFormattedDateString(getConfiguredFormat("formatTime")),
+        await getFormattedDateString(getConfiguredFormat("formatTime")),
       ),
     ),
   );
@@ -145,7 +171,7 @@ export function activate(context: ExtensionContext): void {
         });
         if (format === undefined) return;
         try {
-          await replaceEditorSelection(getFormattedDateString(format));
+          await replaceEditorSelection(await getFormattedDateString(format));
         } catch {
           void window.showWarningMessage("Could not format date string.");
           return;

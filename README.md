@@ -16,8 +16,9 @@ Perfect for Markdown notes, changelogs, front matter, logs, comments, templates,
 
 - Insert date/time with a keyboard shortcut
 - Supports date, time, datetime, ISO 8601, Unix timestamp, and custom formats
-- Configure default Day.js-style formats
-- Use a fixed IANA timezone such as `UTC`, `Europe/Warsaw`, or `America/New_York`
+- Configure a custom format template
+- Allows inserting date/time in a different IANA timezone such as `UTC`, `Europe/Warsaw`, or `America/New_York`
+- Allows inserting localized month and weekday names
 - Insert at the cursor or replace the current selection
 - Prompt for one-off custom formats when needed
 
@@ -59,6 +60,7 @@ Open the Command Palette and run one of these commands:
 - Date format string (_this affects `Insert Date` output_):
 - Time format string (_this affects `Insert Time` output_):
 - Timezone (_applies to all format-based commands; leave empty for local system time_):
+- Locale (_applies to month and weekday-name tokens; leave empty for English_):
 
 Configure the default output in your user or workspace settings:
 
@@ -67,7 +69,8 @@ Configure the default output in your user or workspace settings:
   "insertDateString.format": "YYYY-MM-DD HH:mm:ss",
   "insertDateString.formatDate": "YYYY-MM-DD",
   "insertDateString.formatTime": "HH:mm:ss",
-  "insertDateString.timezone": ""
+  "insertDateString.timezone": "",
+  "insertDateString.locale": ""
 }
 ```
 
@@ -88,6 +91,26 @@ Set `insertDateString.timezone` to an [IANA timezone name](https://en.wikipedia.
 **Unaffected commands:** `Insert Timestamp` always produces a Unix timestamp in milliseconds (UTC by definition). The `iso` format token always outputs UTC regardless of this setting.
 
 If the configured value is not a valid IANA timezone, a warning is shown and local system time is used as a fallback.
+
+### Locale
+
+Set `insertDateString.locale` to a ISO 639-1 locale tag to render month and weekday names in that locale.
+
+```json
+{
+  "insertDateString.locale": "es"
+}
+```
+
+**Supported values:** ISO 639-1 (two-letter codes) locale keys [supported](https://github.com/iamkun/dayjs/tree/dev/src/locale) by Day.js. Leave empty to use English.
+
+**Affected tokens:** `MMM`, `MMMM`, `dd`, `ddd`, and `dddd` use the configured locale verbatim.
+
+**Affected commands:** `Insert DateTime`, `Insert Date`, `Insert Time`, `Insert Formatted DateTime`.
+
+**Unaffected commands:** `Insert Timestamp` always produces a Unix timestamp in milliseconds. The `iso` special format always outputs UTC and does not use locale formatting.
+
+If the configured value is not supported, a warning is shown and English is used as a fallback.
 
 ## Format syntax
 
@@ -110,8 +133,11 @@ Format strings use [dayjs](https://day.js.org/docs/en/display/format) token conv
 - **D** - Day of the month, without leading zeros. 1 to 31
 - **DD** - Day of the month, with leading zeros. 01 to 31
 - **d** - Day of the week. 0 (Sunday) through 6 (Saturday)
+- **dd** - Minimal day name. Su through Sa
 - **ddd** - Abbreviated day name. Sun through Sat
 - **dddd** - Full day name. Sunday through Saturday
+
+Month and weekday-name tokens use `insertDateString.locale` when configured.
 
 ### Hour
 
