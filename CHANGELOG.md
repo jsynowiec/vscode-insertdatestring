@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.2.2] - 2026-10-25
+
+### Fixed
+
+- Updated dependencies
+
 ## [3.2.1] - 2026-07-09
 
 ### Fixed
