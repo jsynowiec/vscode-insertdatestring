@@ -1,12 +1,6 @@
 // ABOUTME: VS Code extension entry point — registers date/time insertion commands.
 // ABOUTME: Inserts formatted date strings into the active editor using dayjs.
-import {
-  commands,
-  workspace,
-  window,
-  ExtensionContext,
-  SnippetString,
-} from "vscode";
+import { commands, workspace, window, ExtensionContext, SnippetString } from "vscode";
 import dayjs from "dayjs";
 import isoWeekPlugin from "dayjs/plugin/isoWeek";
 import advancedFormatPlugin from "dayjs/plugin/advancedFormat";
@@ -28,8 +22,7 @@ const DEFAULT_FORMAT = "YYYY-MM-DD HH:mm:ss";
 const LAST_FORMAT_KEY = "lastCustomFormat";
 
 function getConfiguredFormat(format = "format"): string {
-  const insertDateStringConfiguration =
-    workspace.getConfiguration("insertDateString");
+  const insertDateStringConfiguration = workspace.getConfiguration("insertDateString");
   return insertDateStringConfiguration.get(format, DEFAULT_FORMAT);
 }
 
@@ -43,16 +36,12 @@ function isValidTimezone(tz: string): boolean {
 }
 
 function getConfiguredTimezone(): string | undefined {
-  const tz = workspace
-    .getConfiguration("insertDateString")
-    .get<string>("timezone", "");
+  const tz = workspace.getConfiguration("insertDateString").get<string>("timezone", "");
   return tz || undefined;
 }
 
 function getConfiguredLocale(): string {
-  return workspace
-    .getConfiguration("insertDateString")
-    .get<string>("locale", "");
+  return workspace.getConfiguration("insertDateString").get<string>("locale", "");
 }
 
 function warnInvalidLocale(locale: string): void {
@@ -66,17 +55,12 @@ function warnInvalidLocale(locale: string): void {
     )
     .then((selection) => {
       if (selection === "Open Settings") {
-        void commands.executeCommand(
-          "workbench.action.openSettings",
-          "insertDateString.locale",
-        );
+        void commands.executeCommand("workbench.action.openSettings", "insertDateString.locale");
       }
     });
 }
 
-async function getFormattedDateString(
-  userFormat = getConfiguredFormat(),
-): Promise<string> {
+async function getFormattedDateString(userFormat = getConfiguredFormat()): Promise<string> {
   const timezone = getConfiguredTimezone();
   let now: dayjs.Dayjs;
 
@@ -125,9 +109,7 @@ async function replaceEditorSelection(text: string): Promise<void> {
 
   const success = await editor.insertSnippet(snippet);
   if (!success) {
-    void window.showWarningMessage(
-      "Could not insert date string into a read-only document.",
-    );
+    void window.showWarningMessage("Could not insert date string into a read-only document.");
   }
 }
 
@@ -140,17 +122,13 @@ export function activate(context: ExtensionContext): void {
 
   context.subscriptions.push(
     commands.registerCommand("insertDateString.insertDate", async () =>
-      replaceEditorSelection(
-        await getFormattedDateString(getConfiguredFormat("formatDate")),
-      ),
+      replaceEditorSelection(await getFormattedDateString(getConfiguredFormat("formatDate"))),
     ),
   );
 
   context.subscriptions.push(
     commands.registerCommand("insertDateString.insertTime", async () =>
-      replaceEditorSelection(
-        await getFormattedDateString(getConfiguredFormat("formatTime")),
-      ),
+      replaceEditorSelection(await getFormattedDateString(getConfiguredFormat("formatTime"))),
     ),
   );
 
@@ -161,28 +139,25 @@ export function activate(context: ExtensionContext): void {
   );
 
   context.subscriptions.push(
-    commands.registerCommand(
-      "insertDateString.insertOwnFormatDateTime",
-      async () => {
-        const lastFormat = context.workspaceState.get<string>(LAST_FORMAT_KEY);
-        const format = await window.showInputBox({
-          value: lastFormat ?? getConfiguredFormat(),
-          prompt: INPUT_PROMPT,
-        });
-        if (format === undefined) return;
-        try {
-          await replaceEditorSelection(await getFormattedDateString(format));
-        } catch {
-          void window.showWarningMessage("Could not format date string.");
-          return;
-        }
-        const configuredFormat = getConfiguredFormat();
-        void context.workspaceState.update(
-          LAST_FORMAT_KEY,
-          format === configuredFormat ? undefined : format,
-        );
-      },
-    ),
+    commands.registerCommand("insertDateString.insertOwnFormatDateTime", async () => {
+      const lastFormat = context.workspaceState.get<string>(LAST_FORMAT_KEY);
+      const format = await window.showInputBox({
+        value: lastFormat ?? getConfiguredFormat(),
+        prompt: INPUT_PROMPT,
+      });
+      if (format === undefined) return;
+      try {
+        await replaceEditorSelection(await getFormattedDateString(format));
+      } catch {
+        void window.showWarningMessage("Could not format date string.");
+        return;
+      }
+      const configuredFormat = getConfiguredFormat();
+      void context.workspaceState.update(
+        LAST_FORMAT_KEY,
+        format === configuredFormat ? undefined : format,
+      );
+    }),
   );
 
   context.subscriptions.push(

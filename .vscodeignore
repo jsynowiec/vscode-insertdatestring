@@ -5,9 +5,8 @@ out/
 **/*.map
 .gitignore
 .editorconfig
-.prettierrc
-.prettierignore
-eslint.config.mjs
+.oxfmtrc.json
+.oxlintrc.json
 esbuild.mjs
 tsconfig.json
 CLAUDE.md
@@ -22,3 +21,4 @@ CHANGELOG.md
 node_modules/
 mise.toml
 assets/
+.node-version

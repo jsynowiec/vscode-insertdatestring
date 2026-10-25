@@ -9,29 +9,7 @@
         "kind": "build",
         "isDefault": true
       },
-      "isBackground": false,
-      "problemMatcher": "$esbuild-watch"
-    },
-    {
-      "label": "watch",
-      "type": "npm",
-      "script": "watch",
-      "isBackground": true,
-      "problemMatcher": "$esbuild-watch"
-    },
-    {
-      "label": "typecheck",
-      "type": "npm",
-      "script": "typecheck",
-      "isBackground": false,
-      "problemMatcher": "$tsc"
-    },
-    {
-      "label": "lint",
-      "type": "npm",
-      "script": "lint",
-      "isBackground": false,
-      "problemMatcher": "$eslint-stylish"
+      "isBackground": false
     }
   ]
 }
