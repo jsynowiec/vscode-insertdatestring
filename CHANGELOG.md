@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.2.3] - 2026-11-01
+
+### Bug Fixes
+
+- resize icon to 1024px
+
 ## [3.2.2] - 2026-10-25
 
 ### Fixed
@@ -254,6 +260,8 @@
 - `insertdatestring.format` setting for custom format strings
 
 [Unreleased]: https://github.com/jsynowiec/vscode-insertdatestring/compare/v3.2.1...HEAD
+[3.2.3]: https://github.com/jsynowiec/vscode-insertdatestring/compare/v3.2.1...v3.2.3
+[3.2.2]: https://github.com/jsynowiec/vscode-insertdatestring/compare/v3.2.1...v3.2.2
 [3.2.1]: https://github.com/jsynowiec/vscode-insertdatestring/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/jsynowiec/vscode-insertdatestring/compare/v3.1.6...v3.2.0
 [3.1.6]: https://github.com/jsynowiec/vscode-insertdatestring/compare/v3.1.5...v3.1.6
