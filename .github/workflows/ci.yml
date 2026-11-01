@@ -1,0 +1,14 @@
+on: [push]
+
+jobs:
+    package:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        steps:
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
+              with:
+                  node-version-file: ".node-version"
+            - run: npm ci
+            - run: npm run package
